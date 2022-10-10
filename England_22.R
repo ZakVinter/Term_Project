@@ -156,7 +156,7 @@ record_17 = record_17 %>%
 
 
 
-#2017
+#2016
 
 url_16 = "https://www.transfermarkt.us/premier-league/topErhalteneElfmeter/wettbewerb/GB1/plus/1?saison_id=2016"
 
@@ -186,11 +186,89 @@ record_16 = record_16 %>%
 
 
 
+#2015
+
+url_15 = "https://www.transfermarkt.us/premier-league/topErhalteneElfmeter/wettbewerb/GB1/plus/1?saison_id=2015"
+
+scorer_men_15 = read_html(url_15)
+
+
+selector = "#main > main > div:nth-child(6) > div > div > div.responsive-table"
+records_15 = scorer_men_15 |> 
+  html_elements(selector) |>
+  html_table()
+
+record_15 = records_15[[1]]
+
+
+record_15 = record_15[,-1:-2,]
+
+record_15 =record_15[,-6]
+
+
+names(record_15) = c("CLUB", "PENALTIES_RECIEVED", "SCORED", "MISSED", "CONVERTION RATE")
+
+record_15 = record_15 %>%
+  mutate(
+    TOTAL = sum(PENALTIES_RECIEVED)
+  )
+
+
+#2014
+
+url_14 = "https://www.transfermarkt.us/premier-league/topErhalteneElfmeter/wettbewerb/GB1/plus/1?saison_id=2014"
+
+scorer_men_14 = read_html(url_14)
+
+
+selector = "#main > main > div:nth-child(6) > div > div > div.responsive-table"
+records_14 = scorer_men_14 |> 
+  html_elements(selector) |>
+  html_table()
+
+record_14 = records_14[[1]]
+
+
+record_14 = record_14[,-1:-2,]
+
+record_14 =record_14[,-6]
+
+
+names(record_14) = c("CLUB", "PENALTIES_RECIEVED", "SCORED", "MISSED", "CONVERTION RATE")
+
+record_14 = record_14 %>%
+  mutate(
+    TOTAL = sum(PENALTIES_RECIEVED)
+  )
 
 
 
+#2013
+
+url_13 = "https://www.transfermarkt.us/premier-league/topErhalteneElfmeter/wettbewerb/GB1/plus/1?saison_id=2013"
+
+scorer_men_13 = read_html(url_13)
 
 
+selector = "#main > main > div:nth-child(6) > div > div > div.responsive-table"
+records_13 = scorer_men_13 |> 
+  html_elements(selector) |>
+  html_table()
+
+record_13 = records_13[[1]]
+
+
+record_13 = record_13[,-1:-2,]
+
+record_13 =record_13[,-6]
+
+
+names(record_13) = c("CLUB", "PENALTIES_RECIEVED", "SCORED", "MISSED", "CONVERTION RATE")
+
+record_13 = record_13 %>%
+  mutate(
+    TOTAL = sum(PENALTIES_RECIEVED)
+  )
 
 
 
