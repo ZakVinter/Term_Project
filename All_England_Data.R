@@ -363,3 +363,18 @@ Penalties_Recieved = c(87, 82, 91, 106, 80, 103, 92, 125, 103)
 
 
 Annual_Data = data.frame(Years, Penalties_Recieved)
+
+Appended_Data = rbind(record_13, record_14,
+                      record_15, record_16,
+                      record_17, record_18,
+                      record_19, record_20,
+                      record_21)
+
+
+
+
+
+
+
+
+
