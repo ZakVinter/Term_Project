@@ -1,20 +1,24 @@
 
 library(pacman)
-
+# this package allows us to load several packages at 1 time. 
 p_load(tidyverse, tidyr, ggplot2, lubridate, Quandl, rvest, httr, jsonlite)
-
+# all the things that are needed for webscraping. 
 #2021
 
 url_21 = "https://www.transfermarkt.us/premier-league/topErhalteneElfmeter/wettbewerb/GB1/plus/1?saison_id=2021"
 
+# the same steps will be repeated 8 times. 
+
 scorer_men_21 = read_html(url_21)
 
+#Saving the website as an object.
 
 selector = "#main > main > div:nth-child(6) > div > div > div.responsive-table"
 record_21 = scorer_men_21 |> 
   html_elements(selector) |>
   html_table()
-
+# the selector represents the table that we are scraping from the webpage, then from here we are saying from this website, 
+#take this table and put into a table format and save it as a new object. 
 record_21 = record_21[[1]]
 
 
