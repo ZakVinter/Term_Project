@@ -29,25 +29,35 @@ record_21 = record_21[[1]]
 record_21 = record_21[,-1:-2,]
 
 record_21 =record_21[,-6]
+# these last few rows were to drop observations that didn't have any values.
 
-
+<<<<<<< HEAD
 names(record_21) = c("CLUB", "PENALTIES_RECIEVED", "SCORED", "MISSED", "CONVERSION RATE")
 
+=======
+names(record_21) = c("CLUB", "PENALTIES_RECIEVED", "SCORED", "MISSED", "CONVERTION RATE")
+# naming the columns. since the original names didn't appear. 
+>>>>>>> b78e45180797a4a43ecd42b5192f48efa9bbf07c
 record_21 = record_21 %>%
   mutate(
     TOTAL = sum(PENALTIES_RECIEVED)
   )
 
+# creating a column that has the total number of penalties received and put into a data set that can have an extra column.
 
 record_21 = record_21 %>%
   mutate(
     Year = 2021
   )
 
+<<<<<<< HEAD
 
 record_21 <- record_21 %>%
   relocate(Year, .before = PENALTIES_RECIEVED)
 
+=======
+# the next steps are the same for the entire set of years analyzed. 
+>>>>>>> b78e45180797a4a43ecd42b5192f48efa9bbf07c
 
 #2020
 
@@ -359,13 +369,8 @@ Years = c(2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021)
 Penalties_Recieved = c(87, 82, 91, 106, 80, 103, 92, 125, 103)
 
 
-
-library(plyr)
-
 Annual_Data = data.frame(Years, Penalties_Recieved)
 
-
-ss = append(record_13, record_16, record_15)
 
 
 
