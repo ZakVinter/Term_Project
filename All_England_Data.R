@@ -364,6 +364,11 @@ Penalties_Recieved = c(87, 82, 91, 106, 80, 103, 92, 125, 103)
 
 Annual_Data = data.frame(Years, Penalties_Recieved)
 
+ww = data.frame(record_13)
+
+qq = data.frame(record_14)
+
+
 
 
 
