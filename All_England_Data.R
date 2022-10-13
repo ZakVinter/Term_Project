@@ -3,16 +3,24 @@ library(pacman)
 # this package allows us to load several packages at 1 time. 
 p_load(tidyverse, tidyr, dplyr, ggplot2, lubridate, Quandl, rvest, httr, jsonlite)
 # all the things that are needed for webscraping. 
+
+#the same steps will be repeated 9 times for each year.
+
 #2021
 
+
+
+#Saving the website as an object.
 url_21 = "https://www.transfermarkt.us/premier-league/topErhalteneElfmeter/wettbewerb/GB1/plus/?saison_id=2021"
 
-#the same steps will be repeated 8 times. 
+
 
 scorer_men_21 = read_html(url_21)
 
-#Saving the website as an object.
 
+# the selector represents the table that we are scraping from the webpage, 
+#then from here we are saying from this website, take this table and put into 
+#a table format and save it as a new object.
 selector_21 = "#main > main > div:nth-child(7) > div.large-8.columns > div > div.responsive-table"
 record_21 = scorer_men_21 %>%
   html_elements(selector_21) %>%
@@ -20,34 +28,35 @@ record_21 = scorer_men_21 %>%
 
 
 
-# the selector represents the table that we are scraping from the webpage, 
-#then from here we are saying from this website, take this table and put into 
-#a table format and save it as a new object. 
+ 
 record_21 = record_21[[1]]
 
 
+
+# these last few columns were to drop observations that didn't have any values.
 record_21 = record_21[,-1:-2,]
 
 record_21 = record_21[,-6]
-# these last few rows were to drop observations that didn't have any values.
 
 
+# name all the variables
 names(record_21) = c("CLUB", "PENALTIES_RECIEVED", "SCORED", "MISSED", "CONVERSION RATE")
 
 
-
+# make a variable that sums the total number of goals by all teams in the 
+#season.
 record_21 = record_21 %>%
   mutate(
     TOTAL = sum(PENALTIES_RECIEVED)
   )
 
-
+#this variable is created to show which year these penalties were given in.
 record_21 = record_21 %>%
   mutate(
     Year = 2021
   )
 
-
+#Move this variable to the second column
 record_21 <- record_21 %>%
   relocate(Year, .before = PENALTIES_RECIEVED)
 
