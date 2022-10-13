@@ -1,4 +1,16 @@
+---
+title: "England_Output"
+author: "Zak Vinter"
+date: "2022-10-12"
+output: html_document
+---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
 library(pacman)
 # this package allows us to load several packages at 1 time. 
 p_load(tidyverse, tidyr, dplyr, ggplot2, lubridate, Quandl, rvest, httr, jsonlite)
@@ -52,6 +64,12 @@ record_21 <- record_21 %>%
   relocate(Year, .before = PENALTIES_RECIEVED)
 
 
+```
+
+
+
+
+```{r}
 #2020
 
 
@@ -94,7 +112,11 @@ record_20 <- record_20 %>%
 
 
 
+```
 
+
+
+```{r}
 #2019
 
 url_19 = "https://www.transfermarkt.us/premier-league/topErhalteneElfmeter/wettbewerb/GB1/plus/?saison_id=2019"
@@ -133,7 +155,10 @@ record_19 <- record_19 %>%
   relocate(Year, .before = PENALTIES_RECIEVED)
 
 
+```
 
+
+```{r}
 #2018
 
 url_18 = "https://www.transfermarkt.us/premier-league/topErhalteneElfmeter/wettbewerb/GB1/plus/?saison_id=2018"
@@ -170,6 +195,10 @@ record_18 = record_18 %>%
 record_18 <- record_18 %>%
   relocate(Year, .before = PENALTIES_RECIEVED)
 
+```
+
+
+```{r}
 #2017
 
 url_17 = "https://www.transfermarkt.us/premier-league/topErhalteneElfmeter/wettbewerb/GB1/plus/?saison_id=2017"
@@ -206,6 +235,9 @@ record_17 = record_17 %>%
 record_17 <- record_17 %>%
   relocate(Year, .before = PENALTIES_RECIEVED)
 
+```
+
+```{r}
 #2016
 
 url_16 = "https://www.transfermarkt.us/premier-league/topErhalteneElfmeter/wettbewerb/GB1/plus/?saison_id=2016"
@@ -243,6 +275,9 @@ record_16 <- record_16 %>%
   relocate(Year, .before = PENALTIES_RECIEVED)
 
 
+```
+
+```{r}
 #2015
 
 url_15 = "https://www.transfermarkt.us/premier-league/topErhalteneElfmeter/wettbewerb/GB1/plus/?saison_id=2015"
@@ -278,7 +313,9 @@ record_15 = record_15 %>%
 
 record_15 <- record_15 %>%
   relocate(Year, .before = PENALTIES_RECIEVED)
+```
 
+```{r}
 #2014
 
 url_14 = "https://www.transfermarkt.us/premier-league/topErhalteneElfmeter/wettbewerb/GB1/plus/?saison_id=2014"
@@ -315,6 +352,9 @@ record_14 = record_14 %>%
 record_14 <- record_14 %>%
   relocate(Year, .before = PENALTIES_RECIEVED)
 
+```
+
+```{r}
 #2013
 
 url_13 = "https://www.transfermarkt.us/premier-league/topErhalteneElfmeter/wettbewerb/GB1/plus/?saison_id=2013"
@@ -350,31 +390,14 @@ record_13 = record_13 %>%
 
 record_13 <- record_13 %>%
   relocate(Year, .before = PENALTIES_RECIEVED)
+```
 
-
-
-
-
-
-
-
+```{r}
 Years = c(2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021)
 Penalties_Recieved = c(87, 82, 91, 106, 80, 103, 92, 125, 103)
 
 
 Annual_Data = data.frame(Years, Penalties_Recieved)
 
-Appended_Data = rbind(record_13, record_14,
-                      record_15, record_16,
-                      record_17, record_18,
-                      record_19, record_20,
-                      record_21)
-
-
-
-
-
-
-
-
+```
 
