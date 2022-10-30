@@ -383,6 +383,36 @@ Appended_Data = rbind(record_13, record_14,
 
 
 
+save(Appended_Data, file ="~/Documents/GitHub/Term_Project/Data/England/R_Data/Appended_England.Rdata")
+
+save(Annual_Data, file ="~/Documents/GitHub/Term_Project/Data/England/R_Data/Annual_England.Rdata")
+
+
+save(record_13, file ="~/Documents/GitHub/Term_Project/Data/England/R_Data/Yearly/England_13.Rdata")
+
+save(record_14, file ="~/Documents/GitHub/Term_Project/Data/England/R_Data/Yearly/England_14.Rdata")
+
+save(record_15, file ="~/Documents/GitHub/Term_Project/Data/England/R_Data/Yearly/England_15.Rdata")
+
+save(record_16, file ="~/Documents/GitHub/Term_Project/Data/England/R_Data/Yearly/England_16.Rdata")
+
+save(record_17, file ="~/Documents/GitHub/Term_Project/Data/England/R_Data/Yearly/England_17.Rdata")
+
+save(record_18, file ="~/Documents/GitHub/Term_Project/Data/England/R_Data/Yearly/England_18.Rdata")
+
+save(record_19, file ="~/Documents/GitHub/Term_Project/Data/England/R_Data/Yearly/England_19.Rdata")
+
+save(record_20, file ="~/Documents/GitHub/Term_Project/Data/England/R_Data/Yearly/England_20.Rdata")
+
+save(record_21, file ="~/Documents/GitHub/Term_Project/Data/England/R_Data/Yearly/England_21.Rdata")
+
+
+
+
+
+
+
+
 
 
 

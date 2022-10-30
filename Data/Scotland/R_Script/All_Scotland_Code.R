@@ -22,7 +22,8 @@ record_21= scottland_21%>%
   html_elements(selector)%>%
   html_table 
 
-    record_21=record_21[[1]]
+    
+record_21=record_21[[1]]
 record_21=record_21[,-1:-2,]
 
 record_21=record_21[,-6]
@@ -309,3 +310,43 @@ Annual_data<- data.frame(Years,Penalties_received)
 
 
 Appended_data=rbind(record_13,record_14,record_15,record_16,record_17,record_18,record_19, record_20, record_21)
+
+
+
+save(Appended_data, file ="~/Documents/GitHub/Term_Project/Data/Scotland/R_Data/Appended_Scotland.Rdata")
+
+save(Annual_data, file ="~/Documents/GitHub/Term_Project/Data/Scotland/R_Data/Annual_Scotland.Rdata")
+
+
+save(record_13, file ="~/Documents/GitHub/Term_Project/Data/Scotland/R_Data/Yearly/Scotland_13.Rdata")
+
+save(record_14, file ="~/Documents/GitHub/Term_Project/Data/Scotland/R_Data/Yearly/Scotland_14.Rdata")
+
+save(record_15, file ="~/Documents/GitHub/Term_Project/Data/Scotland/R_Data/Yearly/Scotland_15.Rdata")
+
+save(record_16, file ="~/Documents/GitHub/Term_Project/Data/Scotland/R_Data/Yearly/Scotland_16.Rdata")
+
+save(record_17, file ="~/Documents/GitHub/Term_Project/Data/Scotland/R_Data/Yearly/Scotland_17.Rdata")
+
+save(record_18, file ="~/Documents/GitHub/Term_Project/Data/Scotland/R_Data/Yearly/Scotland_18.Rdata")
+
+save(record_19, file ="~/Documents/GitHub/Term_Project/Data/Scotland/R_Data/Yearly/Scotland_19.Rdata")
+
+save(record_20, file ="~/Documents/GitHub/Term_Project/Data/Scotland/R_Data/Yearly/Scotland_20.Rdata")
+
+save(record_21, file ="~/Documents/GitHub/Term_Project/Data/Scotland/R_Data/Yearly/Scotland_21.Rdata")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

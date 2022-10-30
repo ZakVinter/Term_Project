@@ -1,0 +1,37 @@
+---
+title: "Write_Up"
+author: "Zak Vinter"
+date: "2022-10-29"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Write Up
+
+### Zak Vinter & Nick Power
+### 29/10/2022
+
+
+
+## Topic / Motivation
+
+  Our topic is studying the effects of implementing video assistant referees (VAR) in soccer. VAR is a new version of refereeing in which replays can be showed to the referee to allow them to make sure decisions are correct and assign penalties when the referee missed the foul committed during regular gameplay.  We will look at the effects over multiple variables, however our main analysis is whether VAR has any effects on the number of penalties received. The theory behind this is that VAR will intervene to the referee’s decision - if need be - when there is something that was originally missed. Therefore, we would expect the number of penalties awarded to increase as all fouls committed are caught.
+
+	The study we have designed is a difference-in-difference study. England was one of the first countries to adopt VAR, bringing it in for the 19/20 season. This allows us to compare England (the treatment) to Scotland (the control). Scotland still has not brought in VAR giving three full years of data to compare post treatment effect. 
+	
+	In terms of data, we have gathered this through web-scaping. We have data for years through 2013-2022. This gives 6 years pre-treatment and three post-treatment. We believe this is enough pre data to give us a good idea of past trends. For each season we have penalty data per team (20 teams). The variables we have are penalties received, penalties scored, conversion rate, and missed penalties. This is of course for both countries too. This gives us sufficient data to use to compare the effects of the policy change. In the coming weeks we plan to also collect data on other variables like total goals scored to understand whether this policy has a larger impact, and to have something as a counter factual. Doing this will allow us to make a broader decision on whether the policy was successful on improving refereeing, and whether it has improved the game as a whole. 
+
+
+## Data Processing
+
+  
+
+
+
+
+
+
+
