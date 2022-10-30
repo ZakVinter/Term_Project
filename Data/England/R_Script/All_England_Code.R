@@ -380,6 +380,11 @@ Appended_Data = rbind(record_13, record_14,
                       record_21)
 
 
+Annual_Data = Annual_Data %>%
+  mutate(
+    pens_per_team = Penalties_Recieved/20
+  )
+
 
 
 

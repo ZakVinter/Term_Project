@@ -312,6 +312,12 @@ Annual_data<- data.frame(Years,Penalties_received)
 Appended_data=rbind(record_13,record_14,record_15,record_16,record_17,record_18,record_19, record_20, record_21)
 
 
+Annual_data = Annual_data %>%
+  mutate(
+    pen_per_team = Penalties_received/12
+  )
+
+
 
 save(Appended_data, file ="~/Documents/GitHub/Term_Project/Data/Scotland/R_Data/Appended_Scotland.Rdata")
 
@@ -335,6 +341,9 @@ save(record_19, file ="~/Documents/GitHub/Term_Project/Data/Scotland/R_Data/Year
 save(record_20, file ="~/Documents/GitHub/Term_Project/Data/Scotland/R_Data/Yearly/Scotland_20.Rdata")
 
 save(record_21, file ="~/Documents/GitHub/Term_Project/Data/Scotland/R_Data/Yearly/Scotland_21.Rdata")
+
+
+
 
 
 
