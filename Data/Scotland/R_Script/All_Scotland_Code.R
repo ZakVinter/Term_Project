@@ -311,6 +311,7 @@ Annual_data<- data.frame(Years,Penalties_received)
 
 Appended_data=rbind(record_13,record_14,record_15,record_16,record_17,record_18,record_19, record_20, record_21)
 
+<<<<<<< Updated upstream:Data/Scotland/R_Script/All_Scotland_Code.R
 
 
 save(Appended_data, file ="~/Documents/GitHub/Term_Project/Data/Scotland/R_Data/Appended_Scotland.Rdata")
@@ -350,3 +351,5 @@ save(record_21, file ="~/Documents/GitHub/Term_Project/Data/Scotland/R_Data/Year
 
 
 
+=======
+>>>>>>> Stashed changes:All_Scotland_Data.R
