@@ -69,19 +69,41 @@ tidy_joined = rbind(tidy_eng, tidy_scot)
 
 
 
+
+
+
+
+
+
+#create a variable in both the Scotland and England appended data sets with 
+#country name 
+Appended_England = Appended_England %>%
+  mutate(
+    COUNTRY = "England"
+  )
+
+
+#relocate to before penalties received
+Appended_England = Appended_England %>%
+  relocate(COUNTRY, .before = PENALTIES_RECEIVED)
+
+
+Appended_Scotland = Appended_Scotland %>%
+  mutate(
+    COUNTRY = "Scotland"
+  )
+
+
+Appended_Scotland = Appended_Scotland %>%
+  relocate(COUNTRY, .before = PENALTIES_RECEIVED)
+
+
+
+
+
+
 #full data set for all clubs years and over both countries
 Appended_Joined = rbind(Appended_England, Appended_Scotland)
-
-
-
-
-
-
-
-
-
-
-
 
 
 
