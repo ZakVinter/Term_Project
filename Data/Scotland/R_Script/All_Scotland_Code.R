@@ -299,48 +299,27 @@ record_13<- record_13|>
 record_13<- record_13|> 
   relocate(Year,.before= PENALTIES_RECEIVED)   
 
-# creating a dataset with just penatlies recieved per year. 
 
+
+
+
+# create a vector for the all years we have data for
 Years = c(2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021)
 
+#this vector is the total amount of penalties received per year in Scotland
 Penalties_received<-c(51,48,77,62,54,68,47,67,56)
 
-
+#create a data set with these two vectors
 Annual_data<- data.frame(Years,Penalties_received)
 
-
+#create a data set that has observations for all clubs and all years
 Appended_data=rbind(record_13,record_14,record_15,record_16,record_17,record_18,record_19, record_20, record_21)
 
 
-
+#new variable that calculated the number of penalties per team (there are 12 
+#teams in Scotland)
 Annual_data = Annual_data %>%
   mutate(
     pen_per_team = Penalties_received/12
   )
-
-
-
-save(Appended_data, file ="~/Documents/GitHub/Term_Project/Data/Scotland/R_Data/Appended_Scotland.Rdata")
-
-save(Annual_data, file ="~/Documents/GitHub/Term_Project/Data/Scotland/R_Data/Annual_Scotland.Rdata")
-
-
-save(record_13, file ="~/Documents/GitHub/Term_Project/Data/Scotland/R_Data/Yearly/Scotland_13.Rdata")
-
-save(record_14, file ="~/Documents/GitHub/Term_Project/Data/Scotland/R_Data/Yearly/Scotland_14.Rdata")
-
-save(record_15, file ="~/Documents/GitHub/Term_Project/Data/Scotland/R_Data/Yearly/Scotland_15.Rdata")
-
-save(record_16, file ="~/Documents/GitHub/Term_Project/Data/Scotland/R_Data/Yearly/Scotland_16.Rdata")
-
-save(record_17, file ="~/Documents/GitHub/Term_Project/Data/Scotland/R_Data/Yearly/Scotland_17.Rdata")
-
-save(record_18, file ="~/Documents/GitHub/Term_Project/Data/Scotland/R_Data/Yearly/Scotland_18.Rdata")
-
-save(record_19, file ="~/Documents/GitHub/Term_Project/Data/Scotland/R_Data/Yearly/Scotland_19.Rdata")
-
-save(record_20, file ="~/Documents/GitHub/Term_Project/Data/Scotland/R_Data/Yearly/Scotland_20.Rdata")
-
-save(record_21, file ="~/Documents/GitHub/Term_Project/Data/Scotland/R_Data/Yearly/Scotland_21.Rdata")
-
 

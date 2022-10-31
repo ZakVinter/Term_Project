@@ -364,15 +364,16 @@ record_13 <- record_13 %>%
 
 
 
-
-
-
+#create a vector of years
 Years = c(2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021)
+
+#vector of penalties for each year
 Penalties_Recieved = c(87, 82, 91, 106, 80, 103, 92, 125, 103)
 
-
+#create an annual data set out of two vectors
 Annual_Data = data.frame(Years, Penalties_Recieved)
 
+#combined data for all years and all teams in England
 Appended_Data = rbind(record_13, record_14,
                       record_15, record_16,
                       record_17, record_18,
@@ -380,44 +381,12 @@ Appended_Data = rbind(record_13, record_14,
                       record_21)
 
 
+
+#create a new variable in the annual data set that measures penalties per team
 Annual_Data = Annual_Data %>%
   mutate(
     pens_per_team = Penalties_Recieved/20
   )
-
-
-
-
-save(Appended_Data, file ="~/Documents/GitHub/Term_Project/Data/England/R_Data/Appended_England.Rdata")
-
-save(Annual_Data, file ="~/Documents/GitHub/Term_Project/Data/England/R_Data/Annual_England.Rdata")
-
-
-save(record_13, file ="~/Documents/GitHub/Term_Project/Data/England/R_Data/Yearly/England_13.Rdata")
-
-save(record_14, file ="~/Documents/GitHub/Term_Project/Data/England/R_Data/Yearly/England_14.Rdata")
-
-save(record_15, file ="~/Documents/GitHub/Term_Project/Data/England/R_Data/Yearly/England_15.Rdata")
-
-save(record_16, file ="~/Documents/GitHub/Term_Project/Data/England/R_Data/Yearly/England_16.Rdata")
-
-save(record_17, file ="~/Documents/GitHub/Term_Project/Data/England/R_Data/Yearly/England_17.Rdata")
-
-save(record_18, file ="~/Documents/GitHub/Term_Project/Data/England/R_Data/Yearly/England_18.Rdata")
-
-save(record_19, file ="~/Documents/GitHub/Term_Project/Data/England/R_Data/Yearly/England_19.Rdata")
-
-save(record_20, file ="~/Documents/GitHub/Term_Project/Data/England/R_Data/Yearly/England_20.Rdata")
-
-save(record_21, file ="~/Documents/GitHub/Term_Project/Data/England/R_Data/Yearly/England_21.Rdata")
-
-
-
-
-
-
-
-
 
 
 
