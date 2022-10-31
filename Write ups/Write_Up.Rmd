@@ -14,6 +14,7 @@ h1,h2, h3, h4 {
   text-align: center;
   font-weight: bold;
 }
+
 ```
 
 
@@ -41,8 +42,7 @@ library(tidyverse)
 load("~/Documents/GitHub/Term_Project/Data/Joined/R_Data/tidy_joined.Rdata")
 ```
 
-```{r echo=FALSE, message=FALSE,warning=FALSE}
-
+```{r echo=FALSE, message=FALSE,warning=FALSE, fig.align = 'center'}
 
 #two line plots for both countries average penalties per team through time
 tidy_joined %>%
@@ -87,7 +87,7 @@ tidy_joined %>%
 
 
 
-```{r echo=FALSE, message=FALSE, warning=FALSE}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align = 'center'}
 
 #plot of two local regressions. Penalties per team for both Scotland and England
 tidy_joined %>%
