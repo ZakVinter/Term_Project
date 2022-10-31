@@ -371,23 +371,22 @@ Years = c(2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021)
 Penalties_Recieved = c(87, 82, 91, 106, 80, 103, 92, 125, 103)
 
 #create an annual data set out of two vectors
-Annual_Data = data.frame(Years, Penalties_Recieved)
+Annual_England = data.frame(Years, Penalties_Recieved)
 
 #combined data for all years and all teams in England
-Appended_Data = rbind(record_13, record_14,
+Appended_England = rbind(record_13, record_14,
                       record_15, record_16,
                       record_17, record_18,
                       record_19, record_20,
                       record_21)
 
+#rename variables for consistency
+names(Appended_England) = c("CLUB","YEAR", "PENALTIES_RECEIVED", "SCORED", "MISSED", "CONVERSION RATE", "TOTAL")
 
 
 #create a new variable in the annual data set that measures penalties per team
-Annual_Data = Annual_Data %>%
+Annual_England = Annual_England %>%
   mutate(
     pens_per_team = Penalties_Recieved/20
   )
-
-
-
 

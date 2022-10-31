@@ -69,14 +69,8 @@ tidy_joined = rbind(tidy_eng, tidy_scot)
 
 
 
-
-
-
-
-
-
-
-
+#full data set for all clubs years and over both countries
+Appended_Joined = rbind(Appended_England, Appended_Scotland)
 
 
 

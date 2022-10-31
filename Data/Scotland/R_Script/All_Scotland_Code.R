@@ -310,15 +310,17 @@ Years = c(2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021)
 Penalties_received<-c(51,48,77,62,54,68,47,67,56)
 
 #create a data set with these two vectors
-Annual_data<- data.frame(Years,Penalties_received)
+Annual_Scotland<- data.frame(Years,Penalties_received)
 
 #create a data set that has observations for all clubs and all years
-Appended_data=rbind(record_13,record_14,record_15,record_16,record_17,record_18,record_19, record_20, record_21)
+Appended_Scotland=rbind(record_13,record_14,record_15,record_16,record_17,record_18,record_19, record_20, record_21)
 
+#rename variables for consistency
+names(Appended_Scotland)=c("CLUB","YEAR", "PENALTIES_RECEIVED","SCORED","MISSED","CONVERSION RATE", "TOTAL")
 
 #new variable that calculated the number of penalties per team (there are 12 
 #teams in Scotland)
-Annual_data = Annual_data %>%
+Annual_Scotland = Annual_Scotland %>%
   mutate(
     pen_per_team = Penalties_received/12
   )
