@@ -2,7 +2,7 @@
 library(pacman)
 # this package allows us to load several packages at 1 time. 
 p_load(tidyverse, tidyr, dplyr, ggplot2, lubridate, Quandl, rvest, httr, jsonlite)
-# all the things that are needed for webscraping. 
+# all the things that are needed for web-scraping. 
 
 #the same steps will be repeated 9 times for each year.
 
