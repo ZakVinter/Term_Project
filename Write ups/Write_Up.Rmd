@@ -1,7 +1,7 @@
 ---
-title: "Write_Up"
-author: "Zak Vinter"
-date: "2022-10-29"
+title: "Report"
+author: "Zak Vinter & Nick Power"
+date: "10-29-2022"
 output: html_document
 ---
 
@@ -9,25 +9,127 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Write Up
+```{css, echo=FALSE}
+h1,h2, h3, h4 {
+  text-align: center;
+  font-weight: bold;
+}
 
-### Zak Vinter & Nick Power
-### 29/10/2022
-
-
-
-## Topic / Motivation
-
-  Our topic is studying the effects of implementing video assistant referees (VAR) in soccer. VAR is a new version of refereeing in which replays can be showed to the referee to allow them to make sure decisions are correct and assign penalties when the referee missed the foul committed during regular gameplay.  We will look at the effects over multiple variables, however our main analysis is whether VAR has any effects on the number of penalties received. The theory behind this is that VAR will intervene to the referee’s decision - if need be - when there is something that was originally missed. Therefore, we would expect the number of penalties awarded to increase as all fouls committed are caught.
-
-	The study we have designed is a difference-in-difference study. England was one of the first countries to adopt VAR, bringing it in for the 19/20 season. This allows us to compare England (the treatment) to Scotland (the control). Scotland still has not brought in VAR giving three full years of data to compare post treatment effect. 
-	
-	In terms of data, we have gathered this through web-scaping. We have data for years through 2013-2022. This gives 6 years pre-treatment and three post-treatment. We believe this is enough pre data to give us a good idea of past trends. For each season we have penalty data per team (20 teams). The variables we have are penalties received, penalties scored, conversion rate, and missed penalties. This is of course for both countries too. This gives us sufficient data to use to compare the effects of the policy change. In the coming weeks we plan to also collect data on other variables like total goals scored to understand whether this policy has a larger impact, and to have something as a counter factual. Doing this will allow us to make a broader decision on whether the policy was successful on improving refereeing, and whether it has improved the game as a whole. 
+```
 
 
-## Data Processing
 
+
+### Topic / Motivation
+
+  Our topic is studying the effects of implementing video assistant referees (VAR) in soccer. VAR is a new version of refereeing in which replays can be showed to the on-field referee, allowing them to make sure decisions are correct. This means penalties could be assigned when the on-field referee missed the foul committed during regular game play, or a penalty is ruled out after the on-field referee wrongly gives a penalty. We will look at the effects over multiple variables, however our main analysis is whether VAR has any effect on the number of penalties received. The theory behind this is that VAR enables the referees to not miss any foul during the game. Therefore, we would expect the number of penalties awarded to increase as all fouls committed are caught. Also, fouls tend to look a lot worse in slow motion so having replays my exaggerate the severity of fouls committed. Penalties awarded can of course be ruled out if the on-field referee makes a mistake, however this rarely happens as the mistake by the referee needs to be clear and obvious by the rule book. This means many tackles that are border line fouls, will not be ruled out.
+    
+  The study we have designed is a difference-in-difference study. England was one of the first countries to adopt VAR, bringing it in for the 19/20 season. This allows us to compare England (the treatment) to Scotland (the control). Scotland still has not brought in VAR giving three full years of data to compare post treatment effects. The validity of this policy as an exogenous shock is not 100% clear. The English league does not appear to have been chosen randomly to the be first to implement this policy. However, the reasoning does not appear to be linked to the number of penalties. Referees all over the world make mistakes and all referees want this technology as an assistance. Mistakes made were not worse in England than other countries, creating faster action for this policy. The reasons that it was the first country to implement the policy is that the English league is the best league in the world with the most fans worldwide. Therefore, they were the trailblazers and one of the only leagues with the money to implement such technology so fast. Therefore we are not worried about there being validity concerns tied to the policy.
+	  
+  In terms of data, we have gathered this through web-scraping. We have data for years through 2013-2022, giving us 6 years pre-treatment and 3 post-treatment. We believe this is enough pre data to give us a good idea of past trends. For each season we have penalty data per team. The English league has 20 teams in it per season and the Scottish league has 12. The variables we have scraped are penalties received, penalties scored, conversion rate, and missed penalties. This is of course for both countries too. This gives us sufficient data to use to compare the effects of the policy change. 
+
+### Data Processing
+
+  After scraping the data for all 9 nine years across both countries, we created a total column for every year. This counts the total number of penalties received for every team in the league for that season. After this we created to vectors. One including the 9 years (2013, 2014, etc.) and the other all the totals for each season. Then we created a data set out of these vectors which has 9 observations and 2 variables. We then added a average penalties per team variable. This is the number of penalties handed out in the whole league, divided by the number of teams. We do this because there is a different number of teams in each league. Therefore, this is a much more accurate way to compare penalties received between the two leagues. These data sets are called the Annual_Scotland and Annual_England. Next we created an appended data set for both countries. This consists of all the teams and over all the years. This is the tidy version of the data.
   
+  The next step was to take the two Annual data sets and combine them for a joined data set. Firstly we added a country variable to both the data sets. This allows us to distinguish between the observations across countries. After combining this data set included average penalties per team for both countries over all years. The variable were (year, country, penalties received, and average penalties per team). This is a tidy version of this data set and will allow us to create visualizations. After this we conducted the same process for the two Appended data sets. We added the countries name and then used rbind to create a data set for all observations. This has all teams across all years for each country. The variables were (club, country, year,penalties received, penalties scored, penalties missed, conversion rate, and the total penalties received for all teams in that league that year). This is called the Appended_Joined. This process has left us with two main data sets. The tidy_joined and the Appended_Joined. The main variables we will use for analysis are 'average penalties per team', and 'penalties received at club level'. 
+
+  In terms of adjustment the main adjustment was the average penalties per team transformation described above. There was no other transformations needed for this data. Additionally there was no extreme values or NA's to deal with in this data set. All of the data that was scraped has been used, it has just been wrangled, cleaned and transformed.
+
+
+### Results/Visualizations
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+
+library(ggplot2)
+library(tidyverse)
+load("~/Documents/GitHub/Term_Project/Joined/R_Data/tidy_joined.Rdata")
+```
+
+```{r echo=FALSE, message=FALSE,warning=FALSE, fig.align = 'center'}
+
+#two line plots for both countries average penalties per team through time
+tidy_joined %>%
+  ggplot(aes(years, pen_per_team, color = country)) +
+  geom_line(size = 1) + geom_point(color = "black", size=0.8) +
+  #set x axis limits and breaks for the year values in the data set
+  scale_x_continuous(limits = c(2013,2021), 
+                     breaks = c(2013,2014,2015,2016,2017,2018,2019,2020,2021))+
+  #set appropriate range for y values
+  ylim(3.5,6.5) +
+  #add title
+  ggtitle("Average Penalties per Team across Country") +
+  #label the axis'
+  xlab("Years") +
+  ylab("Average Penalties (per team)") +
+  #change the theme of the legend text
+  guides(color = guide_legend(label.theme = element_text(color = c("black"), face ="bold"))) +
+  #change the theme and the position of the title
+  theme(plot.title = element_text(hjust = 0.5, color="black", size=14, face="bold"),
+        #change theme of axis', tick markers
+        axis.title.x = element_text(color="black", size=12, face="bold"),
+        axis.title.y = element_text(color="black", size=12, face="bold"),
+        axis.text.x = element_text(color="black", face="bold"), 
+        axis.text.y = element_text(color="black", face="bold"),
+        #remove the legend title
+        legend.title=element_blank()
+  ) +
+  #create line to represent the policy implementation 
+  geom_vline(xintercept=2018.5, 
+             color = "black", size=1)
+
+
+
+
+
+
+
+```
+
+
+
+
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align = 'center'}
+
+#plot of two local regressions. Penalties per team for both Scotland and England
+tidy_joined %>%
+  ggplot(aes(years, pen_per_team, color = country)) +
+  geom_smooth(size = 1.25) +
+  #set x axis limits and breaks for the year values in the data set
+  scale_x_continuous(limits = c(2013,2021), 
+                     breaks = c(2013,2014,2015,2016,2017,2018,2019,2020,2021))+
+  #set appropriate range for y values
+  ylim(3.5,6.5) +
+  #add title
+  ggtitle("Average Penalties per Team across Country") +
+  #label the axis'
+  xlab("Years") +
+  ylab("Average Penalties (per team)") +
+  #change the theme of the legend text
+  guides(color = guide_legend(label.theme = element_text(color = c("black"), face ="bold"))) +
+  #change the theme for the position of the title
+  theme(plot.title = element_text(hjust = 0.5, color="black", size=14, face="bold"),
+        #change theme of axis', tick markers
+        axis.title.x = element_text(color="black", size=12, face="bold"),
+        axis.title.y = element_text(color="black", size=12, face="bold"),
+        axis.text.x = element_text(color="black", face="bold"), 
+        axis.text.y = element_text(color="black", face="bold"),
+        #remove legend title
+        legend.title=element_blank()
+        ) +
+  #add line for the policies implementation date
+  geom_vline(xintercept=2018.5, 
+               color = "black", size=1)
+
+```
+
+
+
+
+
+
 
 
 
