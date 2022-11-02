@@ -44,7 +44,88 @@ h1,h2, h3, h4 {
 library(ggplot2)
 library(tidyverse)
 load("~/Documents/GitHub/Term_Project/Joined/R_Data/tidy_joined.Rdata")
+load("~/Documents/GitHub/Term_Project/England/R_Data/tidy_eng.Rdata")
+load("~/Documents/GitHub/Term_Project/Scotland/R_Data/tidy_scot.Rdata")
+load("~/Documents/GitHub/Term_Project/England/R_Data/eng_pre.Rdata")
+load("~/Documents/GitHub/Term_Project/England/R_Data/eng_post.Rdata")
+
 ```
+
+```{r echo=FALSE, message=FALSE,warning=FALSE, fig.align = 'center'}
+
+#line plot with points for average penalties per team in England
+ggplot(data=tidy_eng,aes(x=years, y=pen_per_team)) + geom_point(color = "black", size = 2)+
+  geom_line(color = "red", size = 0.8) +
+  #set x axis limits and breaks for the year values in the data set
+  scale_x_continuous(limits = c(2013,2021), 
+                     breaks = c(2013,2014,2015,2016,2017,2018,2019,2020,2021))+
+  #set appropriate range for y values
+  ylim(3,7) +
+  #add title
+  ggtitle("Average Penalties per Team in England") +
+  #label the axis'
+  xlab("Years") +
+  ylab("Average Penalties (per team)") +
+  #change the theme and the position of the title
+  theme(plot.title = element_text(hjust = 0.5, color="black", size=14, face="bold"),
+        #change theme of axis', tick markers
+        axis.title.x = element_text(color="black", size=12, face="bold"),
+        axis.title.y = element_text(color="black", size=12, face="bold"),
+        axis.text.x = element_text(color="black", face="bold"), 
+        axis.text.y = element_text(color="black", face="bold"),
+  ) +
+  #add line for the policies implementation date
+  geom_vline(xintercept=2018.5, 
+             color = "black", size=1) +
+  geom_smooth(data = eng_pre, method = "lm", se = FALSE, col = "black") +
+  geom_smooth(data = eng_post, method = "lm", se = FALSE, col = "black")
+
+
+
+
+```
+
+```{r echo=FALSE, message=FALSE,warning=FALSE, fig.align = 'center'}
+
+#line plot with points for average penalties per team in Scotland
+ggplot(data=tidy_scot,aes(x=years, y=pen_per_team)) + geom_point(color = "black", size = 2)+
+  geom_line(color = "blue", size = 0.8)+
+  #set x axis limits and breaks for the year values in the data set
+  scale_x_continuous(limits = c(2013,2021), 
+                     breaks = c(2013,2014,2015,2016,2017,2018,2019,2020,2021))+
+  #set appropriate range for y values
+  ylim(3,7) +
+  #add title
+  ggtitle("Average Penalties per Team in Scotland") +
+  #label the axis'
+  xlab("Years") +
+  ylab("Average Penalties (per team)") +
+  #change the theme and the position of the title
+  theme(plot.title = element_text(hjust = 0.5, color="black", size=14, face="bold"),
+        #change theme of axis', tick markers
+        axis.title.x = element_text(color="black", size=12, face="bold"),
+        axis.title.y = element_text(color="black", size=12, face="bold"),
+        axis.text.x = element_text(color="black", face="bold"), 
+        axis.text.y = element_text(color="black", face="bold"),
+  ) +
+  geom_smooth( method = "lm", se = FALSE, col = "black")
+
+
+############
+
+scot_pre = tidy_scot %>%
+  filter(years<=2018)
+
+scot_post = tidy_scot %>%
+  filter(years>2018)
+
+
+
+
+```
+
+
+
 
 ```{r echo=FALSE, message=FALSE,warning=FALSE, fig.align = 'center'}
 

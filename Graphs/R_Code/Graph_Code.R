@@ -113,7 +113,10 @@ eng_line<-ggplot(data=tidy_eng,aes(x=years, y=pen_per_team)) + geom_point(color 
   ) +
   #add line for the policies implementation date
   geom_vline(xintercept=2018.5, 
-             color = "black", size=1)
+             color = "black", size=1) +
+  #adding line of best fit for pre and post policy
+  geom_smooth(data = eng_pre, method = "lm", se = FALSE, col = "black") +
+  geom_smooth(data = eng_post, method = "lm", se = FALSE, col = "black")
 
 
 ############
@@ -139,7 +142,9 @@ scot_line<-ggplot(data=tidy_scot,aes(x=years, y=pen_per_team)) + geom_point(colo
         axis.title.y = element_text(color="black", size=12, face="bold"),
         axis.text.x = element_text(color="black", face="bold"), 
         axis.text.y = element_text(color="black", face="bold"),
-  )
+  )+
+  #line of best fit for the whole time period
+  geom_smooth( method = "lm", se = FALSE, col = "black")
 
 
 ############
