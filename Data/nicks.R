@@ -50,9 +50,8 @@ library(dslabs)
 
 library(cowplot)
 
-title<- ggdraw()+ draw_label("Penalties by Year for England &Scotland",
+title<- ggdraw()+ draw_label("Penalties by Year for   England &Scotland",
               fontface = 'bold', x=0, hjust=-.11) + theme(plot.margin = margin(0,0,0,7))
-
 
 
 
@@ -60,8 +59,7 @@ title<- ggdraw()+ draw_label("Penalties by Year for England &Scotland",
 
 combined_plots<-cowplot::plot_grid(hat,bat, labels="",label_size = 6, ncol = 1)
                   
-
-vertical_allign<-plot_grid(title,combined_plots, ncol=1, rel_heights = c(0.1,1))
+plot_grid(title,combined_plots, ncol=1, rel_heights = c(0.1,1))
 
 
 
