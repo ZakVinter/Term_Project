@@ -120,7 +120,7 @@ ggplot(data=tidy_scot,aes(x=years, y=pen_per_team)) + geom_point(color = "black"
 
 ```
 
-The second visual shows Scotland and the average penalties per team in Scotland. It is a nice juxtaposition to have Just below the English graph. Without the line of best fit it is hard to see that there is an ever so slight increase of penalties per team across the range of years in the dataset. However it is quite gradual, which makes for a nice sort of control in our project hypothesis. 
+The second visual shows Scotland and the average penalties per team in Scotland. It is a nice juxtaposition to have Just below the English graph. Without the line of best fit it is hard to see that there is an ever so slight increase of penalties per team across the range of years in the data set. However it is quite gradual, which makes for a nice sort of control in our project hypothesis. 
 
 
 ```{r echo=FALSE, message=FALSE,warning=FALSE, fig.align = 'center'}
@@ -158,7 +158,7 @@ tidy_joined %>%
 
 ```
 
-To illustrate relative parallel trends before the policy change takes place there is a graph that puts together both the plotted datapoints of England and Scotland in one graph. There are no lines of best fit to allow for less clutter and show the overall pattern more clearly. The asymptotic policy change shows the dramatic increase of penalties per team in England, while Scotland is beneath. It further illustrates the potential of something further going on. 
+To illustrate relative parallel trends before the policy change takes place there is a graph that puts together both the plotted data points of England and Scotland in one graph. There are no lines of best fit to allow for less clutter and show the overall pattern more clearly. The asymptotic policy change shows the dramatic increase of penalties per team in England, while Scotland is beneath. It further illustrates the potential of something further going on. 
 
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align = 'center'}
