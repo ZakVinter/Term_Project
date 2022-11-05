@@ -36,22 +36,6 @@ h1,h2, h3, h4 {
 
   In terms of adjustment the main adjustment was the average penalties per team transformation described above. There was no other transformations needed for this data. Additionally there was no extreme values or NA's to deal with in this data set. All of the data that was scraped has been used, it has just been wrangled, cleaned and transformed.
 
-## graph descriptions 
-
-The first graphical depiction is of average penalties per team in England. There is a line of best fit to illustrate how the graph would look had it been drawn smoothed out. The line across the entirety of the graph as a vertical asymptote symbolizes the policy that went into effect regarding the instant replay for assigning penalties. The post line drawn further along the x-axis shows what appears to a be a marked increase in average penalties per team. Something that warrants further investigation. But promising nonetheless. 
-
-The second visual shows Scotland and the average penalties per team in Scotland. It is a nice juxtaposition to have Just below the English graph. Without the line of best fit it is hard to see that there is an ever so slight increase of penalties per team across the range of years in the dataset. However it is quite gradual, which makes for a nice sort of control in our project hypothesis. 
-
-
-To illustrate relative parallel trends before the policy change takes place there is a graph that puts together both the plotted datapoints of England and Scotland in one graph. There are no lines of best fit to allow for less clutter and show the overall pattern more clearly. The asymptotic policy change shows the dramatic increase of penalties per team in England, while Scotland is beneath. It further illustrates the potential of something further going on. 
-
-
-The final graph shows the exact thing we are looking to find more information about. With the smoothed lines a more clear pattern emerges. With  the penalties in Scotland showing a little more of an upward trend in the pre-period than would initially be suspected with the line of best fit from the second graph. But the overall upward trend that was hypothesized in our motivation section is shown with a bit more impact with the smoothed Scotland line showing a level trend that further warrants our difference and difference study with the policy change in England, as England shows a drastic increase compared to Scotland.  
-
-
-The final graph is just an overall illustration of the Total number of penalties per country by year, not by team. This was chosen as the y-axis instead of penalties per team because it shows a relationship that may be a bit easier to interpret. Since it is Just the total number of penalties throughout both leagues per year it can have a little less variation as the averages per team per year may show some more potential outlying behavior. This graph nicely illustrates the trends on top of each other. It shows how the overall penalties by year is on a larger scale than for the average per team per year, which can help get a birds-eye view of the overall situation. It may be slight in appearance, but the slight trend of total number of penalties in England seems to make a marked increase compared to Scotland in 2018, right when the policy takes place. 
-
-
 
 ### Results/Visualizations
 
@@ -64,6 +48,7 @@ load("~/Documents/GitHub/Term_Project/England/R_Data/tidy_eng.Rdata")
 load("~/Documents/GitHub/Term_Project/Scotland/R_Data/tidy_scot.Rdata")
 load("~/Documents/GitHub/Term_Project/England/R_Data/eng_pre.Rdata")
 load("~/Documents/GitHub/Term_Project/England/R_Data/eng_post.Rdata")
+load("~/Documents/GitHub/Term_Project/Joined/R_Data/Appended_Joined.Rdata")
 
 ```
 
@@ -102,6 +87,9 @@ ggplot(data=tidy_eng,aes(x=years, y=pen_per_team)) + geom_point(color = "black",
 
 ```
 
+The first graphical depiction is of average penalties per team in England. There is a line of best fit to illustrate how the graph would look had it been drawn smoothed out. The line across the entirety of the graph as a vertical asymptote symbolizes the policy that went into effect regarding the instant replay for assigning penalties. The post line drawn further along the x-axis shows what appears to a be a marked increase in average penalties per team. Something that warrants further investigation. But promising nonetheless. 
+
+
 ```{r echo=FALSE, message=FALSE,warning=FALSE, fig.align = 'center'}
 
 #line plot with points for average penalties per team in Scotland
@@ -132,7 +120,7 @@ ggplot(data=tidy_scot,aes(x=years, y=pen_per_team)) + geom_point(color = "black"
 
 ```
 
-
+The second visual shows Scotland and the average penalties per team in Scotland. It is a nice juxtaposition to have Just below the English graph. Without the line of best fit it is hard to see that there is an ever so slight increase of penalties per team across the range of years in the dataset. However it is quite gradual, which makes for a nice sort of control in our project hypothesis. 
 
 
 ```{r echo=FALSE, message=FALSE,warning=FALSE, fig.align = 'center'}
@@ -170,9 +158,7 @@ tidy_joined %>%
 
 ```
 
-
-
-
+To illustrate relative parallel trends before the policy change takes place there is a graph that puts together both the plotted datapoints of England and Scotland in one graph. There are no lines of best fit to allow for less clutter and show the overall pattern more clearly. The asymptotic policy change shows the dramatic increase of penalties per team in England, while Scotland is beneath. It further illustrates the potential of something further going on. 
 
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align = 'center'}
@@ -209,7 +195,9 @@ tidy_joined %>%
 
 ```
 
-```{r}
+The fourth graph shows the exact thing we are looking to find more information about. With the smoothed lines a more clear pattern emerges. With  the penalties in Scotland showing a little more of an upward trend in the pre-period than would initially be suspected with the line of best fit from the second graph. But the overall upward trend that was hypothesized in our motivation section is shown with a bit more impact with the smoothed Scotland line showing a level trend that further warrants our difference and difference study with the policy change in England, as England shows a drastic increase compared to Scotland.  
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align = 'center'}
 # vertical graphs stacked on top of each other
 
 # create datasets with just england and scotland totals.
@@ -227,7 +215,7 @@ hat<-ggplot(data = england_grouped,aes(x=YEAR,y=TOTAL))+ scale_x_continuous(limi
                                   breaks=c(2013,2014,2015,2016,2017,2018,2019,2020,2021))+
                       scale_y_continuous(limits=c(0,150), 
                                          minor_breaks= NULL, 
-                                         expand=c(0,1))+geom_smooth(span=0.65, se=FALSE) +ggtitle("EN")+
+                                         expand=c(0,1))+geom_smooth(span=0.65, se=FALSE) +ggtitle("England")+
                                           theme(plot.title = element_text(hjust=.5))
 
 
@@ -240,7 +228,7 @@ bat<-ggplot(data=scot_grouped,aes(x=YEAR, y=TOTAL)) +
                      breaks = c(2013,2014,2015,2016,2017,2018,2019,2020,2021))+
   scale_y_continuous( limits=c(0,150),
                       minor_breaks = NULL, 
-                      expand = c(0,1)) +geom_smooth(span=0.65,se=FALSE) +ggtitle("SC")+
+                      expand = c(0,1)) +geom_smooth(span=0.65,se=FALSE) +ggtitle("Scotland")+
   theme(plot.title=element_text(hjust = .5))
 
 
@@ -257,8 +245,9 @@ library(cowplot)
 
 
 # the title of the graph
-title<- ggdraw()+ draw_label("Penalties by Year for England &Scotland",
-              fontface = 'bold', x=0, hjust=-.11) + theme(plot.margin = margin(0,0,0,7))
+title<- ggdraw()+ draw_label("Penalties by Year for England & Scotland",
+              fontface = 'bold', x=0, hjust=-.11) + 
+  theme(plot.margin = margin(0,0,0,7))
 
 
 
@@ -276,3 +265,7 @@ plot_grid(title,combined_plots, ncol=1, rel_heights = c(0.1,1))
 
 
 ```
+
+The final graph is just an overall illustration of the Total number of penalties per country by year, not by team. This was chosen as the y-axis instead of penalties per team because it shows a relationship that may be a bit easier to interpret. Since it is Just the total number of penalties throughout both leagues per year it can have a little less variation as the averages per team per year may show some more potential outlying behavior. This graph nicely illustrates the trends on top of each other. It shows how the overall penalties by year is on a larger scale than for the average per team per year, which can help get a birds-eye view of the overall situation. It may be slight in appearance, but the slight trend of total number of penalties in England seems to make a marked increase compared to Scotland in 2018, right when the policy takes place.
+
+
