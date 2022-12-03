@@ -786,23 +786,23 @@ record_13<- record_13|>
 
 #save all of these yearly data sets
 
-save(record_13, file = "Term_Project/R_Data/Scotland/Yearly/Scotland_13.Rdata")
+save(record_13, file = "Github/Term_Project/R_Data/Scotland/Yearly/Scotland_13.Rdata")
 
-save(record_14, file = "Term_Project/R_Data/Scotland/Yearly/Scotland_14.Rdata")
+save(record_14, file = "Github/Term_Project/R_Data/Scotland/Yearly/Scotland_14.Rdata")
 
-save(record_15, file = "Term_Project/R_Data/Scotland/Yearly/Scotland_15.Rdata")
+save(record_15, file = "Github/Term_Project/R_Data/Scotland/Yearly/Scotland_15.Rdata")
 
-save(record_16, file = "Term_Project/R_Data/Scotland/Yearly/Scotland_16.Rdata")
+save(record_16, file = "Github/Term_Project/R_Data/Scotland/Yearly/Scotland_16.Rdata")
 
-save(record_17, file = "Term_Project/R_Data/Scotland/Yearly/Scotland_17.Rdata")
+save(record_17, file = "Github/Term_Project/R_Data/Scotland/Yearly/Scotland_17.Rdata")
 
-save(record_18, file = "Term_Project/R_Data/Scotland/Yearly/Scotland_18.Rdata")
+save(record_18, file = "Github/Term_Project/R_Data/Scotland/Yearly/Scotland_18.Rdata")
 
-save(record_19, file = "Term_Project/R_Data/Scotland/Yearly/Scotland_19.Rdata")
+save(record_19, file = "Github/Term_Project/R_Data/Scotland/Yearly/Scotland_19.Rdata")
 
-save(record_20, file = "Term_Project/R_Data/Scotland/Yearly/Scotland_20.Rdata")
+save(record_20, file = "Github/Term_Project/R_Data/Scotland/Yearly/Scotland_20.Rdata")
 
-save(record_21, file = "Term_Project/R_Data/Scotland/Yearly/Scotland_21.Rdata")
+save(record_21, file = "Github/Term_Project/R_Data/Scotland/Yearly/Scotland_21.Rdata")
 
 
 
@@ -841,7 +841,18 @@ Annual_Scotland = Annual_Scotland %>%
 
 
 
-save(Annual_Scotland, file = "Term_Project/R_Data/Scotland/Annual_Scotland.Rdata")
+
+#new variable that calculated the number of penalties per team (there are 12 
+#teams in Scotland)
+Annual_Scotland = Annual_Scotland %>%
+  mutate(
+    pen_per_team = Penalties_received/12
+  )
+
+
+
+
+save(Annual_Scotland, file = "Github/Term_Project/R_Data/Scotland/Annual_Scotland.Rdata")
 
 
 
@@ -864,13 +875,71 @@ names(Appended_Scotland)=c("CLUB","YEAR", "PENALTIES_RECEIVED","SCORED","MISSED"
 
 
 
-#new variable that calculated the number of penalties per team (there are 12 
-#teams in Scotland)
-Annual_Scotland = Annual_Scotland %>%
+
+
+#create a variable in the Scotland appended data set with 
+#country name 
+Appended_Scotland = Appended_Scotland %>%
   mutate(
-    pen_per_team = Penalties_received/12
+    COUNTRY = "Scotland"
   )
 
 
-save(Appended_Scotland, file = "Term_Project/R_Data/Scotland/Appended_Scotland.Rdata")
+
+
+#relocate to before penalties received
+Appended_Scotland = Appended_Scotland %>%
+  relocate(COUNTRY, .before = PENALTIES_RECEIVED)
+
+
+
+
+
+save(Appended_Scotland, file = "Github/Term_Project/R_Data/Scotland/Appended_Scotland.Rdata")
+
+
+
+
+
+
+
+
+#########################################################
+
+
+
+
+
+#create tidy version of annual Scotland data
+tidy_scot = Annual_Scotland
+
+
+
+
+
+#new variable for country name
+tidy_scot = tidy_scot %>%
+  mutate(
+    country = "Scotland"
+  )
+
+
+
+
+#move the country variable to the second column
+tidy_scot = tidy_scot %>%
+  relocate(country, .before = Penalties_received)
+
+
+
+
+#rename variable names to allow merging
+names(tidy_scot) = c("years", "country", "pen_rec", "pen_per_team")
+
+
+
+save(tidy_scot, file = "Github/Term_Project/R_Data/Scotland/tidy_scot.Rdata")
+
+
+
 

@@ -731,23 +731,23 @@ record_13 <- record_13 %>%
 
 #save all of these yearly data sets
 
-save(record_13, file = "Term_Project/R_Data/England/Yearly/England_13.Rdata")
+save(record_13, file = "Github/Term_Project/R_Data/England/Yearly/England_13.Rdata")
 
-save(record_14, file = "Term_Project/R_Data/England/Yearly/England_14.Rdata")
+save(record_14, file = "Github/Term_Project/R_Data/England/Yearly/England_14.Rdata")
 
-save(record_15, file = "Term_Project/R_Data/England/Yearly/England_15.Rdata")
+save(record_15, file = "Github/Term_Project/R_Data/England/Yearly/England_15.Rdata")
 
-save(record_16, file = "Term_Project/R_Data/England/Yearly/England_16.Rdata")
+save(record_16, file = "Github/Term_Project/R_Data/England/Yearly/England_16.Rdata")
 
-save(record_17, file = "Term_Project/R_Data/England/Yearly/England_17.Rdata")
+save(record_17, file = "Github/Term_Project/R_Data/England/Yearly/England_17.Rdata")
 
-save(record_18, file = "Term_Project/R_Data/England/Yearly/England_18.Rdata")
+save(record_18, file = "Github/Term_Project/R_Data/England/Yearly/England_18.Rdata")
 
-save(record_19, file = "Term_Project/R_Data/England/Yearly/England_19.Rdata")
+save(record_19, file = "Github/Term_Project/R_Data/England/Yearly/England_19.Rdata")
 
-save(record_20, file = "Term_Project/R_Data/England/Yearly/England_20.Rdata")
+save(record_20, file = "Github/Term_Project/R_Data/England/Yearly/England_20.Rdata")
 
-save(record_21, file = "Term_Project/R_Data/England/Yearly/England_21.Rdata")
+save(record_21, file = "Github/Term_Project/R_Data/England/Yearly/England_21.Rdata")
 
 
 #######################################################
@@ -780,10 +780,31 @@ Annual_England = Annual_England %>%
   )
 
 
-save(Annual_England, file = "Term_Project/R_Data/England/Annual_England.Rdata")
+
+
+#create a new variable in the annual data set that measures penalties per team
+Annual_England = Annual_England %>%
+  mutate(
+    pens_per_team = Penalties_Recieved/20
+  )
+
+
+
+
+save(Annual_England, file = "Github/Term_Project/R_Data/England/Annual_England.Rdata")
+
+
+
+
 
 
 ########################################
+
+
+
+
+
+
 
 #create a data set that includes all the data for each individual team across all years
 
@@ -801,25 +822,69 @@ Appended_England = rbind(record_13, record_14,
 
 
 
-
-
 #rename variables for consistency
 names(Appended_England) = c("CLUB","YEAR", "PENALTIES_RECEIVED", "SCORED", "MISSED", "CONVERSION RATE", "TOTAL")
 
 
 
-
-
-
-
-#create a new variable in the annual data set that measures penalties per team
-Annual_England = Annual_England %>%
+#create a variable in the England appended data set with 
+#country name 
+Appended_England = Appended_England %>%
   mutate(
-    pens_per_team = Penalties_Recieved/20
+    COUNTRY = "England"
   )
 
 
-save(Appended_England, file = "Term_Project/R_Data/England/Appended_England.Rdata")
+
+
+#relocate to before penalties received
+Appended_England = Appended_England %>%
+  relocate(COUNTRY, .before = PENALTIES_RECEIVED)
+
+
+
+
+
+
+save(Appended_England, file = "Github/Term_Project/R_Data/England/Appended_England.Rdata")
+
+
+
+
+
+
+
+############################################################
+
+
+#create tidy version of annual England data
+tidy_eng = Annual_England
+
+
+
+
+#new variable for country name
+tidy_eng = tidy_eng %>%
+  mutate(
+    country = "England"
+  )
+
+
+
+
+#move the country variable to the second column
+tidy_eng = tidy_eng %>%
+  relocate(country, .before = Penalties_Recieved)
+
+
+
+
+#rename variable names to allow merging
+names(tidy_eng) = c("years", "country", "pen_rec", "pen_per_team")
+
+
+
+save(tidy_eng, file = "Github/Term_Project/R_Data/England/tidy_eng.Rdata")
 
 
 
