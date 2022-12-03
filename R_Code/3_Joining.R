@@ -1,17 +1,5 @@
 
 
-#making the pen_per_team for Scotland variable rounded to two decimal places
-Annual_Scotland = Annual_Scotland %>%
-  mutate(
-    pen_per_team = round(Annual_Scotland$pen_per_team, digits = 2)
-  )
-
-
-#same as above but for England
-Annual_England = Annual_England %>%
-  mutate(
-    pens_per_team = round(Annual_England$pens_per_team, digits = 2)
-  )
 
 
 
