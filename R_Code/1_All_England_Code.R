@@ -857,6 +857,10 @@ save(Appended_England, file = "Github/Term_Project/R_Data/England/Appended_Engla
 ############################################################
 
 
+
+
+
+
 #create tidy version of annual England data
 tidy_eng = Annual_England
 
@@ -885,6 +889,51 @@ names(tidy_eng) = c("years", "country", "pen_rec", "pen_per_team")
 
 
 save(tidy_eng, file = "Github/Term_Project/R_Data/England/tidy_eng.Rdata")
+
+
+
+
+
+
+############################################################
+
+
+
+#creating two separate data sets out of the tidy_eng data set for pre and 
+#post treatment. This will be used for creating lines of best fit in graphs
+
+
+
+
+
+#data set with only data past the treatment period
+eng_post = tidy_eng %>%
+ filter(
+    years>2018
+  )
+
+
+
+
+
+
+#data set with all years before treatment
+eng_pre = tidy_eng %>%
+  filter(
+    years<2019
+  )
+
+
+
+
+save(eng_post, file = "Github/Term_Project/R_Data/England/eng_post.Rdata")
+
+
+save(eng_pre, file = "Github/Term_Project/R_Data/England/eng_pre.Rdata")
+
+
+
+
 
 
 

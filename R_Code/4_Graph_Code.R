@@ -27,7 +27,24 @@ eng_smooth<-ggplot(data=tidy_eng,aes(x=years, y=pen_per_team)) + geom_point(size
              color = "black", size=1)
 
 
-###########
+
+
+
+
+ggsave("~/Github/Term_Project/R_Graphs/eng_smooth.png", plot = eng_smooth)
+
+
+
+
+
+
+#################################################
+
+
+
+
+
+
 
 
 #local regression of average penalties per team in Scotland with additional points
@@ -53,7 +70,23 @@ scot_smooth<-ggplot(data=tidy_scot,aes(x=years, y=pen_per_team)) + geom_point(si
 
 
 
-########
+
+
+ggsave("~/Github/Term_Project/R_Graphs/scot_smooth.png", plot = scot_smooth)
+
+
+
+
+
+
+#####################################
+
+
+
+
+
+
+
 
 
 #plot of two local regressions. Average penalties per team for both Scotland and England
@@ -87,7 +120,27 @@ combined_smooth<-tidy_joined %>%
                color = "black", size=1)
 
 
-###########
+
+
+ggsave("~/Github/Term_Project/R_Graphs/combined_smooth.png", plot = combined_smooth)
+
+
+
+
+
+
+####################################################
+
+
+
+
+
+
+
+
+
+
+
 
 
 #line plot with points for average penalties per team in England
@@ -119,7 +172,24 @@ eng_line<-ggplot(data=tidy_eng,aes(x=years, y=pen_per_team)) + geom_point(color 
   geom_smooth(data = eng_post, method = "lm", se = FALSE, col = "black")
 
 
-############
+
+
+ggsave("~/Github/Term_Project/R_Graphs/eng_line.png", plot = eng_line)
+
+
+
+
+
+
+
+################################################
+
+
+
+
+
+
+
 
 
 #line plot with points for average penalties per team in Scotland
@@ -147,7 +217,23 @@ scot_line<-ggplot(data=tidy_scot,aes(x=years, y=pen_per_team)) + geom_point(colo
   geom_smooth( method = "lm", se = FALSE, col = "black")
 
 
-############
+
+
+
+ggsave("~/Github/Term_Project/R_Graphs/scot_line.png", plot = scot_line)
+
+
+
+
+#############################################
+
+
+
+
+
+
+
+
 
 
 #two line plots for both countries average penalties per team through time
@@ -179,6 +265,25 @@ combined_line<-tidy_joined %>%
   #create line to represent the policy implementation 
   geom_vline(xintercept=2018.5, 
              color = "black", size=1)
+
+
+
+
+
+
+ggsave("~/Github/Term_Project/R_Graphs/combined_line.png", plot = combined_line)
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
