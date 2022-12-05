@@ -43,12 +43,12 @@ h1,h2, h3, h4 {
 
 library(ggplot2)
 library(tidyverse)
-load("~/GitHub/Term_Project/Joined/R_Data/tidy_joined.Rdata")
-load("~/GitHub/Term_Project/England/R_Data/tidy_eng.Rdata")
-load("~/GitHub/Term_Project/Scotland/R_Data/tidy_scot.Rdata")
-load("~/GitHub/Term_Project/England/R_Data/eng_pre.Rdata")
-load("~/GitHub/Term_Project/England/R_Data/eng_post.Rdata")
-load("~/GitHub/Term_Project/Joined/R_Data/Appended_Joined.Rdata")
+load("~/GitHub/Term_Project/R_Data/Joined/tidy_joined.Rdata")
+load("~/GitHub/Term_Project/R_Data/England/tidy_eng.Rdata")
+load("~/GitHub/Term_Project/R_Data/Scotland/tidy_scot.Rdata")
+load("~/GitHub/Term_Project/R_Data/England/eng_pre.Rdata")
+load("~/GitHub/Term_Project/R_Data/England/eng_post.Rdata")
+load("~/GitHub/Term_Project/R_Data/Joined/Appended_Joined.Rdata")
 
 ```
 
