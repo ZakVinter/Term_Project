@@ -1,6 +1,18 @@
+library(ggplot2)
+library(tidyverse)
+load("~/GitHub/Term_Project/R_Data/Joined/tidy_joined.Rdata")
+load("~/GitHub/Term_Project/R_Data/England/tidy_eng.Rdata")
+load("~/GitHub/Term_Project/R_Data/Scotland/tidy_scot.Rdata")
+load("~/GitHub/Term_Project/R_Data/England/eng_pre.Rdata")
+load("~/GitHub/Term_Project/R_Data/England/eng_post.Rdata")
+load("~/GitHub/Term_Project/R_Data/Joined/Appended_Joined.Rdata")
+
+
 
 
 ###############
+
+
 
 #local regression of average penalties per team in England with additional points
 eng_smooth<-ggplot(data=tidy_eng,aes(x=years, y=pen_per_team)) + geom_point(size = 1.5)+

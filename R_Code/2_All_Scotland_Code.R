@@ -833,14 +833,6 @@ Annual_Scotland<- data.frame(Years,Penalties_received)
 
 
 
-#making the pen_per_team for Scotland variable rounded to two decimal places
-Annual_Scotland = Annual_Scotland %>%
-  mutate(
-    pen_per_team = round(Annual_Scotland$pen_per_team, digits = 2)
-  )
-
-
-
 
 #new variable that calculated the number of penalties per team (there are 12 
 #teams in Scotland)
@@ -848,6 +840,16 @@ Annual_Scotland = Annual_Scotland %>%
   mutate(
     pen_per_team = Penalties_received/12
   )
+
+
+
+#making the pen_per_team for Scotland variable rounded to two decimal places
+Annual_Scotland = Annual_Scotland %>%
+  mutate(
+    pen_per_team = round(Annual_Scotland$pen_per_team, digits = 2)
+  )
+
+
 
 
 

@@ -3,7 +3,7 @@
 
 #all packages needed for web-scraping. 
 library(pacman)
-p_load(tidyverse, tidyr, dplyr, ggplot2, lubridate, Quandl, rvest, httr, jsonlite)
+p_load(tidyverse, tidyr, dplyr, ggplot2, lubridate, Quandl, rvest, httr, jsonlite, rlang)
 
 
 
@@ -773,19 +773,21 @@ Annual_England = data.frame(Years, Penalties_Recieved)
 
 
 
-#making the pen_per_team for Scotland variable rounded to two decimal places
-Annual_England = Annual_England %>%
-  mutate(
-    pens_per_team = round(Annual_England$pens_per_team, digits = 2)
-  )
-
-
-
 
 #create a new variable in the annual data set that measures penalties per team
 Annual_England = Annual_England %>%
   mutate(
     pens_per_team = Penalties_Recieved/20
+  )
+
+
+
+
+
+#making the pen_per_team for Scotland variable rounded to two decimal places
+Annual_England = Annual_England %>%
+  mutate(
+    pens_per_team = round(Annual_England$pens_per_team, digits = 2)
   )
 
 
