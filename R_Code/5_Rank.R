@@ -102,10 +102,6 @@ Top_6 = Top_6 %>%
 
 
 
-
-
-
-
 #creating a data set that includes the total number of penalties across the 
 #country in each year
 
@@ -252,8 +248,6 @@ Annual_England_Not = Annual_England_Not %>%
 
 
 
-
-
 #combine data set to be able to create plots
 Appended_Top_6 = rbind(Annual_England_Not, Annual_England_Top)
 
@@ -269,6 +263,63 @@ save(Appended_Top_6, file = "Github/Term_Project/R_Data/Joined/Appended_Top_6.Rd
 
 
 ############################################
+
+
+
+#additional data set for regression
+
+
+
+#add a variable to specify the group of data
+Top_6 = Top_6 %>%
+  mutate(
+    Type = "Top 6"
+  )
+
+
+
+#add a variable to specify the group of data
+Not_Top_6 = Not_Top_6 %>%
+  mutate(
+    Type = "Not Top 6"
+  )
+
+
+
+
+
+
+
+#combine data set to be able to create plots with tidy version of data
+tidy_Top_6 = rbind(Top_6, Not_Top_6)
+
+
+
+
+
+save(tidy_Top_6, file = "Github/Term_Project/R_Data/Joined/tidy_Top_6.Rdata")
+
+
+
+
+
+
+
+#######################################################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
