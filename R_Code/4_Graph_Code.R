@@ -1,5 +1,10 @@
-library(ggplot2)
-library(tidyverse)
+
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(ggplot2, tidyverse)
+
+
+
+
 load("~/GitHub/Term_Project/R_Data/Joined/tidy_joined.Rdata")
 load("~/GitHub/Term_Project/R_Data/England/tidy_eng.Rdata")
 load("~/GitHub/Term_Project/R_Data/Scotland/tidy_scot.Rdata")
