@@ -49,7 +49,7 @@ load("~/GitHub/Term_Project/R_Data/Scotland/tidy_scot.Rdata")
 load("~/GitHub/Term_Project/R_Data/England/eng_pre.Rdata")
 load("~/GitHub/Term_Project/R_Data/England/eng_post.Rdata")
 load("~/GitHub/Term_Project/R_Data/Joined/Appended_Joined.Rdata")
-
+load("~/GitHub/Term_Project/R_Data/Joined/Appended_Top_6.Rdata")
 ```
 
 ```{r echo=FALSE, message=FALSE,warning=FALSE, fig.align = 'center'}
@@ -267,5 +267,48 @@ plot_grid(title,combined_plots, ncol=1, rel_heights = c(0.1,1))
 ```
 
 The final graph is just an overall illustration of the Total number of penalties per country by year, not by team. This was chosen as the y-axis instead of penalties per team because it shows a relationship that may be a bit easier to interpret. Since it is Just the total number of penalties throughout both leagues per year it can have a little less variation as the averages per team per year may show some more potential outlying behavior. This graph nicely illustrates the trends on top of each other. It shows how the overall penalties by year is on a larger scale than for the average per team per year, which can help get a birds-eye view of the overall situation. It may be slight in appearance, but the slight trend of total number of penalties in England seems to make a marked increase compared to Scotland in 2018, right when the policy takes place.
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align = 'center'}
+
+
+
+ggplot(data=Appended_Top_6, aes(x=Years, y=average_pens, color = Type)) + geom_line(size = 1) +
+  geom_point(color = "black", size = 1) +
+  #set x axis limits and breaks for the year values in the data set
+  scale_x_continuous(limits = c(2013,2021), 
+                     breaks = c(2013,2014,2015,2016,2017,2018,2019,2020,2021))+
+  #set appropriate range for y values
+  ylim(2,12) +
+  #add title
+  ggtitle("Average Penalties per Rank in England") +
+  #label the axis'
+  xlab("Years") +
+  ylab("Average Penalties (per Team)") +
+  #change the theme of the legend text
+  guides(color = guide_legend(label.theme = element_text(color = c("black"), face ="bold"))) +
+  #change the theme and the position of the title
+  theme(plot.title = element_text(hjust = 0.5, color="black", size=14, face="bold"),
+        #change theme of axis', tick markers
+        axis.title.x = element_text(color="black", size=12, face="bold"),
+        axis.title.y = element_text(color="black", size=12, face="bold"),
+        axis.text.x = element_text(color="black", face="bold"), 
+        axis.text.y = element_text(color="black", face="bold"),
+        #remove the legend title
+        legend.title=element_blank()
+  ) +
+  #create line to represent the policy implementation 
+  geom_vline(xintercept=2018.5, 
+             color = "black", size=1)
+
+
+
+
+
+```
+
+
+
+
 
 
