@@ -1,0 +1,30 @@
+---
+title: "Untitled"
+author: "Zak Vinter"
+date: "2022-12-06"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+
+load("~/Documents/GitHub/Term_Project/R_Data/Joined/Join_Eng.Rdata")
+
+
+library(pacman)
+p_load(tidyverse, dplyr, xtable, stargazer, pander, tables, ascii, knitr)
+
+
+
+
+kable(Join_Eng)
+
+
+
+
+
+```
