@@ -1,9 +1,7 @@
-
-
 #load packages
-library(tidyverse)
-library(dplyr)
-library(ggplot2)
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(tidyverse, dplyr, ggplot2)
+
 
 
 #bring in appended data for England
@@ -53,6 +51,7 @@ All_Years = Appended_England %>%
 
 
 
+
 #remove total column all this is unnecessary for this analysis
 All_Years = All_Years[,-8]
 
@@ -76,10 +75,6 @@ table(All_Years$CLUB)
 
 
 
-
-
-
-
 #create a data set including teams within the top 6
 Top_6 = All_Years %>%
   filter(CLUB != "West Ham United") %>%
@@ -92,9 +87,19 @@ Top_6 = All_Years %>%
 
 
 
+save(Top_6, file = "Github/Term_Project/R_Data/England/Top_6.Rdata")
+
+
+
+############################################
+
+
+
+
+
 
 #find the total number of penalties between these teams each year
-Top_6 = Top_6 %>%
+Annual_Top_6 = Top_6 %>%
   group_by(YEAR) %>%
   mutate(
     sum(PENALTIES_RECEIVED)
@@ -151,16 +156,7 @@ Annual_England_Top = Annual_England_Top %>%
 
 
 
-
-
-
-
-
-
 ############################################
-
-
-
 
 
 
@@ -178,10 +174,19 @@ Not_Top_6 = All_Years %>%
 
 
 
+save(Not_Top_6, file = "Github/Term_Project/R_Data/England/Not_Top_6.Rdata")
+
+
+
+
+########################################
+
+
+
 
 
 #find the total number of penalties between these teams each year
-Not_Top_6 = Not_Top_6 %>%
+Annual_Not_Top_6 = Not_Top_6 %>%
   group_by(YEAR) %>%
   mutate(
     sum(PENALTIES_RECEIVED)
@@ -262,54 +267,76 @@ save(Appended_Top_6, file = "Github/Term_Project/R_Data/Joined/Appended_Top_6.Rd
 
 
 
-############################################
-
-
-
-#additional data set for regression
-
-
-
-#add a variable to specify the group of data
-Top_6 = Top_6 %>%
-  mutate(
-    Type = "Top 6"
-  )
-
-
-
-#add a variable to specify the group of data
-Not_Top_6 = Not_Top_6 %>%
-  mutate(
-    Type = "Not Top 6"
-  )
-
-
-
-
-
-
-
-#combine data set to be able to create plots with tidy version of data
-tidy_Top_6 = rbind(Top_6, Not_Top_6)
-
-
-
-
-
-save(tidy_Top_6, file = "Github/Term_Project/R_Data/Joined/tidy_Top_6.Rdata")
-
-
-
-
-
-
-
 #######################################################
 
 
 
 
+
+#bring in appended data for England
+load("~/GitHub/Term_Project/R_Data/Scotland/Appended_Scotland.Rdata")
+
+
+
+
+
+
+#Find which clubs were in the league for all years during the studies time period 
+table(Appended_Scotland$CLUB)
+
+
+
+All_Years = Appended_Scotland
+
+
+
+
+#remove total column all this is unnecessary for this analysis
+All_Years = All_Years[,-8]
+
+
+
+
+
+
+
+#check that the correct teams have been removed
+table(All_Years$CLUB)
+
+
+
+
+#create a data set including teams within the top 6
+Top_5_Scot = All_Years %>%
+  filter(CLUB != "Dundee FC") %>%
+  filter(CLUB != "Dundee United FC") %>%
+  filter(CLUB != "Hamilton Academical FC") %>%
+  filter(CLUB != "Inverness Caledonian Thistle FC") %>%
+  filter(CLUB != "Kilmarnock FC") %>%
+  filter(CLUB != "Livingston FC") %>%
+  filter(CLUB != "Motherwell FC") %>%
+  filter(CLUB != "St. Mirren FC") %>%
+  filter(CLUB != "Ross County FC") %>%
+  filter(CLUB != "Partick Thistle FC") %>%
+  filter(CLUB != "St. Johnstone FC")
+
+
+
+#create a data set including teams within the top 6
+Not_Top_5_Scot = All_Years %>%
+  filter(CLUB != "Rangers FC") %>%
+  filter(CLUB != "Celtic FC") %>%
+  filter(CLUB != "Aberdeen FC") %>%
+  filter(CLUB != "Hibernian FC") %>%
+  filter(CLUB != "Heart of Midlothian FC") 
+
+
+save(Top_5_Scot, file = "Github/Term_Project/R_Data/Scotland/Top_5_Scot.Rdata")
+
+save(Not_Top_5_Scot, file = "Github/Term_Project/R_Data/Scotland/Not_Top_5_Scot.Rdata")
+
+
+################################################################################
 
 
 

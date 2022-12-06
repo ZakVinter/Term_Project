@@ -1,4 +1,9 @@
 
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(estimatr)
+
+
+
 
 
 
@@ -25,6 +30,15 @@ Reg_Data = Reg_Data %>%
   )
 
 
+
+save(Reg_Data, file = "Github/Term_Project/R_Data/Econometrics/Reg_Data.Rdata")
+
+
+
+####################################################
+
+
+
 reg_1 = lm(PENALTIES_RECEIVED ~ Time + Area + Interaction, data = Reg_Data)
 
 
@@ -33,7 +47,12 @@ summary(reg_1)
 
 ############################
 
-save(Reg_Data, file = "Github/Term_Project/R_Data/Econometrics/Reg_Data.Rdata")
 
 
 
+
+reg_1_robust = lm_robust(PENALTIES_RECEIVED ~ Time + Area + Interaction, data = Reg_Data)
+
+
+
+summary(reg_1_robust)

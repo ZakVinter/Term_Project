@@ -1,6 +1,11 @@
 
-library(pacman)
-p_load(tidyverse, dplyr, xtable, stargazer, pander, tables, ascii, knitr)
+
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(tidyverse, dplyr, xtable, stargazer, pander, tables, ascii, knitr)
+
+
+load("~/GitHub/Term_Project/R_Data/Scotland/Appended_Scotland.Rdata")
+
 
 #count how many years each club was in the league for
 Year_Count_Scot = Appended_Scotland %>%
@@ -38,5 +43,5 @@ Join_Scot = Join_Scot %>%
 Join_Scot = Join_Scot[,-2:-3]
 
 
-save(Join_Scot, file = "Github/Term_Project/R_Data/Joined/Join_Scot.Rdata")
+save(Join_Scot, file = "Github/Term_Project/R_Data/Scotland/Join_Scot.Rdata")
 

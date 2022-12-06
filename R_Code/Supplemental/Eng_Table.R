@@ -1,8 +1,11 @@
 
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(tidyverse, dplyr, xtable, stargazer, pander, tables, ascii, knitr)
 
 
-library(pacman)
-p_load(tidyverse, dplyr, xtable, stargazer, pander, tables, ascii, knitr)
+
+
+load("~/GitHub/Term_Project/R_Data/England/Appended_England.Rdata")
 
 
 
@@ -46,12 +49,8 @@ Join_Eng = Join_Eng[,-2:-3]
 
 
 
-Join_Eng <- Join_Eng[order(Join_Eng)]
 
-
-
-
-save(Join_Eng, file = "Github/Term_Project/R_Data/Joined/Join_Eng.Rdata")
+save(Join_Eng, file = "Github/Term_Project/R_Data/England/Join_Eng.Rdata")
 
 
 
