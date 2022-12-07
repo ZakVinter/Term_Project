@@ -1,9 +1,7 @@
 
-
-
-#all packages needed for web-scraping. 
-library(pacman)
-p_load(tidyverse, tidyr, dplyr, ggplot2, lubridate, Quandl, rvest, httr, jsonlite, rlang)
+#all packages needed for web-scraping.
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(tidyverse, tidyr, dplyr, ggplot2, lubridate, Quandl, rvest, httr, jsonlite, rlang)
 
 
 
