@@ -1,15 +1,15 @@
 
 
 if (!require("pacman")) install.packages("pacman")
-pacman::p_load(estimatr)
+pacman::p_load(estimatr, texreg, modelsummary)
 
 
 
 
 
-load("~/GitHub/Term_Project/R_Data/Econometrics/Reg_Data_1.Rdata")
-load("~/GitHub/Term_Project/R_Data/Econometrics/Reg_Data_2.Rdata")
-load("~/GitHub/Term_Project/R_Data/Econometrics/Reg_Data_3.Rdata")
+load("~/documents/GitHub/Term_Project/R_Data/Econometrics/Reg_Data.Rdata")
+load("~/documents/GitHub/Term_Project/R_Data/Econometrics/Reg_Data_2.Rdata")
+load("~/documents/GitHub/Term_Project/R_Data/Econometrics/Reg_Data_3.Rdata")
 
 
 ####################################################
@@ -96,6 +96,25 @@ summary(reg_3_robust)
 
 
 
+modelsummary(list(
+  "Reg_1" = reg_1_robust, 
+  "Reg_2" = reg_2_robust, 
+  "Reg_3" = reg_3_robust
+), 
+fmt = 2
+)
+
+
+
+
+
+
+
+
+
+
+
+texreg(list(, ), stars=c(0.01, 0.05. 0.1) , caption = "tasty tav"))
 
 
 
