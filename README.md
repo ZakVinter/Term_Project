@@ -3,6 +3,8 @@
 
 ## Code
 
+All saving and loading throughout all the code uses Github as the directory.
+
 
 ### 1_All_England_Code.R
 
