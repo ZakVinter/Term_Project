@@ -806,6 +806,55 @@ save(record_21, file = "Github/Term_Project/R_Data/Scotland/Yearly/Scotland_21.R
 
 
 
+
+
+#############################################
+
+
+
+
+
+
+#create a data set that has observations for all clubs and all years
+Appended_Scotland=rbind(record_13,record_14,record_15,record_16,record_17,record_18,record_19, record_20, record_21)
+
+
+
+
+#rename variables for consistency
+names(Appended_Scotland)=c("CLUB","YEAR", "PENALTIES_RECEIVED","SCORED","MISSED","CONVERSION RATE", "TOTAL")
+
+
+
+
+
+
+#create a variable in the Scotland appended data set with 
+#country name 
+Appended_Scotland = Appended_Scotland %>%
+  mutate(
+    COUNTRY = "Scotland"
+  )
+
+
+
+
+#relocate to before penalties received
+Appended_Scotland = Appended_Scotland %>%
+  relocate(COUNTRY, .before = PENALTIES_RECEIVED)
+
+
+
+
+
+save(Appended_Scotland, file = "Github/Term_Project/R_Data/Scotland/Appended_Scotland.Rdata")
+
+
+
+
+
+
+
 #############################################
 
 
@@ -855,52 +904,6 @@ Annual_Scotland = Annual_Scotland %>%
 
 
 save(Annual_Scotland, file = "Github/Term_Project/R_Data/Scotland/Annual_Scotland.Rdata")
-
-
-
-#############################################
-
-
-
-
-
-
-#create a data set that has observations for all clubs and all years
-Appended_Scotland=rbind(record_13,record_14,record_15,record_16,record_17,record_18,record_19, record_20, record_21)
-
-
-
-
-#rename variables for consistency
-names(Appended_Scotland)=c("CLUB","YEAR", "PENALTIES_RECEIVED","SCORED","MISSED","CONVERSION RATE", "TOTAL")
-
-
-
-
-
-
-#create a variable in the Scotland appended data set with 
-#country name 
-Appended_Scotland = Appended_Scotland %>%
-  mutate(
-    COUNTRY = "Scotland"
-  )
-
-
-
-
-#relocate to before penalties received
-Appended_Scotland = Appended_Scotland %>%
-  relocate(COUNTRY, .before = PENALTIES_RECEIVED)
-
-
-
-
-
-save(Appended_Scotland, file = "Github/Term_Project/R_Data/Scotland/Appended_Scotland.Rdata")
-
-
-
 
 
 

@@ -750,61 +750,11 @@ save(record_20, file = "Github/Term_Project/R_Data/England/Yearly/England_20.Rda
 save(record_21, file = "Github/Term_Project/R_Data/England/Yearly/England_21.Rdata")
 
 
-#######################################################
-
-
-#creating a data set that includes the total number of penalties across the 
-#country in each year
-
-
-#create a vector of years
-Years = c(2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021)
-
-
-
-#vector of penalties for each year
-Penalties_Recieved = c(87, 82, 91, 106, 80, 103, 92, 125, 103)
-
-
-
-#create an annual data set out of two vectors
-Annual_England = data.frame(Years, Penalties_Recieved)
-
-
-
-
-
-#create a new variable in the annual data set that measures penalties per team
-Annual_England = Annual_England %>%
-  mutate(
-    pens_per_team = Penalties_Recieved/20
-  )
-
-
-
-
-
-#making the pen_per_team for Scotland variable rounded to two decimal places
-Annual_England = Annual_England %>%
-  mutate(
-    pens_per_team = round(Annual_England$pens_per_team, digits = 2)
-  )
-
-
-
-
-save(Annual_England, file = "Github/Term_Project/R_Data/England/Annual_England.Rdata")
-
-
 
 
 
 
 ########################################
-
-
-
-
 
 
 
@@ -854,11 +804,60 @@ save(Appended_England, file = "Github/Term_Project/R_Data/England/Appended_Engla
 
 
 
+#######################################################
+
+
+
+
+
+
+#creating a data set that includes the total number of penalties across the 
+#country in each year
+
+
+#create a vector of years
+Years = c(2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021)
+
+
+
+#vector of penalties for each year
+Penalties_Recieved = c(87, 82, 91, 106, 80, 103, 92, 125, 103)
+
+
+
+#create an annual data set out of two vectors
+Annual_England = data.frame(Years, Penalties_Recieved)
+
+
+
+
+
+#create a new variable in the annual data set that measures penalties per team
+Annual_England = Annual_England %>%
+  mutate(
+    pens_per_team = Penalties_Recieved/20
+  )
+
+
+
+
+
+#making the pen_per_team for Scotland variable rounded to two decimal places
+Annual_England = Annual_England %>%
+  mutate(
+    pens_per_team = round(Annual_England$pens_per_team, digits = 2)
+  )
+
+
+
+
+save(Annual_England, file = "Github/Term_Project/R_Data/England/Annual_England.Rdata")
+
+
+
 
 
 ############################################################
-
-
 
 
 
