@@ -7,9 +7,9 @@ pacman::p_load(estimatr, modelsummary)
 
 
 
-load("~/documents/GitHub/Term_Project/R_Data/Econometrics/Reg_Data.Rdata")
-load("~/documents/GitHub/Term_Project/R_Data/Econometrics/Reg_Data_2.Rdata")
-load("~/documents/GitHub/Term_Project/R_Data/Econometrics/Reg_Data_3.Rdata")
+load("~/GitHub/Term_Project/R_Data/Econometrics/Reg_Data.Rdata")
+load("~/GitHub/Term_Project/R_Data/Econometrics/Reg_Data_2.Rdata")
+load("~/GitHub/Term_Project/R_Data/Econometrics/Reg_Data_3.Rdata")
 
 
 ####################################################
