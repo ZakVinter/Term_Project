@@ -1,9 +1,9 @@
 
 
 #load in necessary packages
-library(pacman)
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(tidyverse, tidyr, ggplot2, lubridate, Quandl, rvest, httr, jsonlite, dplyr)
 
-p_load(tidyverse, tidyr, ggplot2, lubridate, Quandl, rvest, httr, jsonlite, dplyr)
 
 
 #this code scrapes all of the data between 2013-2021 for all penalties given in Scotland

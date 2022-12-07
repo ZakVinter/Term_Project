@@ -96,15 +96,6 @@ summary(reg_3_robust)
 
 
 
-modelsummary(list(
-  "Reg_1" = reg_1_robust, 
-  "Reg_2" = reg_2_robust, 
-  "Reg_3" = reg_3_robust
-), 
-fmt = 2
-)
-
-
 
 
 

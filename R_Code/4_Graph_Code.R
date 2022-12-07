@@ -1,17 +1,19 @@
 
+
+#load in required packages
 if (!require("pacman")) install.packages("pacman")
 pacman::p_load(ggplot2, tidyverse)
 
 
 
-
+#load in all data sets that are needed to make visualizations
 load("~/GitHub/Term_Project/R_Data/Joined/tidy_joined.Rdata")
 load("~/GitHub/Term_Project/R_Data/England/tidy_eng.Rdata")
 load("~/GitHub/Term_Project/R_Data/Scotland/tidy_scot.Rdata")
 load("~/GitHub/Term_Project/R_Data/England/eng_pre.Rdata")
 load("~/GitHub/Term_Project/R_Data/England/eng_post.Rdata")
 load("~/GitHub/Term_Project/R_Data/Joined/Appended_Joined.Rdata")
-
+load("~/GitHub/Term_Project/R_Data/England/Appended_Top_6.Rdata")
 
 
 
@@ -289,12 +291,6 @@ combined_line<-tidy_joined %>%
 
 
 ggsave("~/Github/Term_Project/R_Graphs/combined_line.png", plot = combined_line)
-
-
-
-
-
-
 
 
 
