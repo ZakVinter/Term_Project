@@ -3,6 +3,8 @@
 
 ## Code
 
+All saving and loading throughout all the code uses Github as the directory.
+
 
 ### 1_All_England_Code.R
 
@@ -46,7 +48,7 @@ Within this r script visualizations were created that showed the relationship di
 ### 1_Reg_Data_Creation.R
 
 
-This r script generates the specific data sets required to run the econometric analysis.
+This r script generates the specific data sets required to run the econometric analysis. Dummy variables are created for difference-in-difference analysis.
 
 
 ### 2_Models.R
