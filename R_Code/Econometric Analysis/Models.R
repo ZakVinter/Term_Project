@@ -1,7 +1,7 @@
 
 
 if (!require("pacman")) install.packages("pacman")
-pacman::p_load(estimatr, texreg, modelsummary)
+pacman::p_load(estimatr, modelsummary)
 
 
 
@@ -114,7 +114,7 @@ fmt = 2
 
 
 
-texreg(list(, ), stars=c(0.01, 0.05. 0.1) , caption = "tasty tav"))
+
 
 
 
