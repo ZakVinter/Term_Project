@@ -306,7 +306,7 @@ table(All_Years$CLUB)
 
 
 
-#create a data set including teams within the top 6
+#create a data set including teams within the top 5
 Top_5_Scot = All_Years %>%
   filter(CLUB != "Dundee FC") %>%
   filter(CLUB != "Dundee United FC") %>%
@@ -322,7 +322,7 @@ Top_5_Scot = All_Years %>%
 
 
 
-#create a data set including teams within the top 6
+#create a data set including teams outside the top 5
 Not_Top_5_Scot = All_Years %>%
   filter(CLUB != "Rangers FC") %>%
   filter(CLUB != "Celtic FC") %>%
