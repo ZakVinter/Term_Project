@@ -41,8 +41,13 @@ h1,h2, h3, h4 {
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 
-library(ggplot2)
-library(tidyverse)
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(estimatr, modelsummary, tidyverse, ggplot2)
+
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+
 load("~/GitHub/Term_Project/R_Data/Joined/tidy_joined.Rdata")
 load("~/GitHub/Term_Project/R_Data/England/tidy_eng.Rdata")
 load("~/GitHub/Term_Project/R_Data/Scotland/tidy_scot.Rdata")
@@ -50,6 +55,9 @@ load("~/GitHub/Term_Project/R_Data/England/eng_pre.Rdata")
 load("~/GitHub/Term_Project/R_Data/England/eng_post.Rdata")
 load("~/GitHub/Term_Project/R_Data/Joined/Appended_Joined.Rdata")
 load("~/GitHub/Term_Project/R_Data/England/Appended_Top_6.Rdata")
+load("~/GitHub/Term_Project/R_Data/Econometrics/Reg_Data.Rdata")
+load("~/GitHub/Term_Project/R_Data/Econometrics/Reg_Data_2.Rdata")
+load("~/GitHub/Term_Project/R_Data/Econometrics/Reg_Data_3.Rdata")
 ```
 
 ```{r echo=FALSE, message=FALSE,warning=FALSE, fig.align = 'center'}
@@ -308,7 +316,24 @@ ggplot(data=Appended_Top_6, aes(x=Years, y=average_pens, color = Type)) + geom_l
 ```
 
 
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+reg_1_robust = lm_robust(PENALTIES_RECEIVED ~ Time + Area + Interaction, data = Reg_Data)
+
+reg_2_robust = lm_robust(PENALTIES_RECEIVED ~ Time + Area + Interaction, data = Reg_Data_2)
+
+reg_3_robust = lm_robust(PENALTIES_RECEIVED ~ Time + Area + Interaction, data = Reg_Data_3)
+```
 
 
 
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align = 'center'}
+modelsummary(list(
+  "Reg_1" = reg_1_robust, 
+  "Reg_2" = reg_2_robust, 
+  "Reg_3" = reg_3_robust
+), 
+fmt = 2
+)
+```
 
