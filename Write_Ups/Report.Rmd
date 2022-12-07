@@ -49,7 +49,7 @@ load("~/GitHub/Term_Project/R_Data/Scotland/tidy_scot.Rdata")
 load("~/GitHub/Term_Project/R_Data/England/eng_pre.Rdata")
 load("~/GitHub/Term_Project/R_Data/England/eng_post.Rdata")
 load("~/GitHub/Term_Project/R_Data/Joined/Appended_Joined.Rdata")
-load("~/GitHub/Term_Project/R_Data/Joined/Appended_Top_6.Rdata")
+load("~/GitHub/Term_Project/R_Data/England/Appended_Top_6.Rdata")
 ```
 
 ```{r echo=FALSE, message=FALSE,warning=FALSE, fig.align = 'center'}
