@@ -58,16 +58,16 @@ pacman::p_load(estimatr, modelsummary, tidyverse, ggplot2)
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 
-#load("~/GitHub/Term_Project/R_Data/Joined/tidy_joined.Rdata")
-load("~/documents/GitHub/Term_Project/R_Data/England/tidy_eng.Rdata")
-#load("~/GitHub/Term_Project/R_Data/Scotland/tidy_scot.Rdata")
-load("~/documents/GitHub/Term_Project/R_Data/England/eng_pre.Rdata")
-load("~/documents/GitHub/Term_Project/R_Data/England/eng_post.Rdata")
-#load("~/GitHub/Term_Project/R_Data/Joined/Appended_Joined.Rdata")
-#load("~/GitHub/Term_Project/R_Data/England/Appended_Top_6.Rdata")
-#load("~/GitHub/Term_Project/R_Data/Econometrics/Reg_Data.Rdata")
-#load("~/GitHub/Term_Project/R_Data/Econometrics/Reg_Data_2.Rdata")
-#load("~/GitHub/Term_Project/R_Data/Econometrics/Reg_Data_3.Rdata")
+load("~/GitHub/Term_Project/R_Data/Joined/tidy_joined.Rdata")
+load("~/GitHub/Term_Project/R_Data/England/tidy_eng.Rdata")
+load("~/GitHub/Term_Project/R_Data/Scotland/tidy_scot.Rdata")
+load("~/GitHub/Term_Project/R_Data/England/eng_pre.Rdata")
+load("~/GitHub/Term_Project/R_Data/England/eng_post.Rdata")
+load("~/GitHub/Term_Project/R_Data/Joined/Appended_Joined.Rdata")
+load("~/GitHub/Term_Project/R_Data/England/Appended_Top_6.Rdata")
+load("~/GitHub/Term_Project/R_Data/Econometrics/Reg_Data.Rdata")
+load("~/GitHub/Term_Project/R_Data/Econometrics/Reg_Data_2.Rdata")
+load("~/GitHub/Term_Project/R_Data/Econometrics/Reg_Data_3.Rdata")
 
 ```
 

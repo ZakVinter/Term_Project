@@ -205,77 +205,6 @@ tidy_joined %>%
 
 The fourth graph shows the exact thing we are looking to find more information about. With the smoothed lines a more clear pattern emerges. With  the penalties in Scotland showing a little more of an upward trend in the pre-period than would initially be suspected with the line of best fit from the second graph. But the overall upward trend that was hypothesized in our motivation section is shown with a bit more impact with the smoothed Scotland line showing a level trend that further warrants our difference and difference study with the policy change in England, as England shows a drastic increase compared to Scotland.  
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align = 'center'}
-# vertical graphs stacked on top of each other
-
-# create datasets with just england and scotland totals.
-england_grouped<- Appended_Joined|> 
-  filter(COUNTRY=="England")
-
-
-scot_grouped<- Appended_Joined|> 
-  filter(COUNTRY=="Scotland") 
-
-
-#create England basic plot
-hat<-ggplot(data = england_grouped,aes(x=YEAR,y=TOTAL))+ scale_x_continuous(limits= c(2013,2021),
-                                                                        
-                                  breaks=c(2013,2014,2015,2016,2017,2018,2019,2020,2021))+
-                      scale_y_continuous(limits=c(0,150), 
-                                         minor_breaks= NULL, 
-                                         expand=c(0,1))+geom_smooth(span=0.65, se=FALSE) +ggtitle("England")+
-                                          theme(plot.title = element_text(hjust=.5))
-
-
-
-
-#create basic scotland plot
-
-bat<-ggplot(data=scot_grouped,aes(x=YEAR, y=TOTAL)) + 
-  scale_x_continuous(limits = c(2013,2021), 
-                     breaks = c(2013,2014,2015,2016,2017,2018,2019,2020,2021))+
-  scale_y_continuous( limits=c(0,150),
-                      minor_breaks = NULL, 
-                      expand = c(0,1)) +geom_smooth(span=0.65,se=FALSE) +ggtitle("Scotland")+
-  theme(plot.title=element_text(hjust = .5))
-
-
-
-
-# load the cowplot package to allow combination
-library(tidyverse)
-if (!require("dslabs")) install.packages("dslabs")
-library(dslabs)
-  
-
-library(cowplot)
-
-
-
-# the title of the graph
-title<- ggdraw()+ draw_label("Penalties by Year for England & Scotland",
-              fontface = 'bold', x=0, hjust=-.11) + 
-  theme(plot.margin = margin(0,0,0,7))
-
-
-
-
-# the plots combined together.
-combined_plots<-cowplot::plot_grid(hat,bat, labels="",label_size = 6, ncol = 1)
-         
-
-# the plots combined with the main title.         
-plot_grid(title,combined_plots, ncol=1, rel_heights = c(0.1,1))
-
-
-
-
-
-
-```
-
-The final graph is just an overall illustration of the Total number of penalties per country by year, not by team. This was chosen as the y-axis instead of penalties per team because it shows a relationship that may be a bit easier to interpret. Since it is Just the total number of penalties throughout both leagues per year it can have a little less variation as the averages per team per year may show some more potential outlying behavior. This graph nicely illustrates the trends on top of each other. It shows how the overall penalties by year is on a larger scale than for the average per team per year, which can help get a birds-eye view of the overall situation. It may be slight in appearance, but the slight trend of total number of penalties in England seems to make a marked increase compared to Scotland in 2018, right when the policy takes place.
-
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align = 'center'}
 
@@ -315,6 +244,10 @@ ggplot(data=Appended_Top_6, aes(x=Years, y=average_pens, color = Type)) + geom_l
 
 ```
 
+What this graph shows is the average number of penalties received per team for both teams in the top 6 and teams not in the top 6. What it shows is that there is a distinct change in the trends of both of these groups when the policy is implemented. From 2018-2019 average penalties received per teams in the top 6 increased by roughly 1.25 compared to a decrease of 3.25 for teams not in the top 6. This is vastly different impacts of the policy across groups. These differences persist with a large gap between the groups in the post period that is not seen in the pre period. This is tested later in the econometric analysis to see if whether this differencial impact is significant.
+
+## Econometric Analysis
+
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 reg_1_robust = lm_robust(PENALTIES_RECEIVED ~ Time + Area + Interaction, data = Reg_Data)
@@ -326,6 +259,49 @@ reg_3_robust = lm_robust(PENALTIES_RECEIVED ~ Time + Area + Interaction, data = 
 
 
 
+### Methods
+
+
+
+As discussed above, our econometric analysis methodology is a difference-in-difference method. We used the randomness of the policies implementation to understand the relationship between the policy and penalties received. Our research question is a causal one due to having this natural experiment to exploit. There are three models that we ran in order to understand the relationship of this effect, all using robust standard errors. The first is the main model of interest, whereas the last two models try to understand the differential impact of the policy on bigger clubs compared to smaller clubs.
+
+
+#### Reg_1
+
+
+$$PenaltiesReceived_{ict}= β_0  + β_1 (Post_t * Treat_{ic}) + β_2  Post_t  + β_3  Treat_{ic} + ∈_{ict}$$
+$PenaltiesReceived_{ct}$ represents penalties received by individual club i in Country c in year t. $β_0$ is the treatment effect at the moment of the VAR addition. $β_1$ is the coefficient of interest, this measures the with-in country difference in penalties received before and after VAR is implemented, conditional on year fixed effects. The interaction term is a dummy variable, 0 when country has no VAR and 1 for having it in place. $β_2$ represents country fixed effects, controlling for factors that are constant within country over-time. $Treat_ic$ is a dummy variable that is 0 for clubs in Scotland and 1 for England. $β_3$ represents time fixed effects, controlling for patterns over time that exist within the United Kingdom. $Post_t$ is also a dummy variable, 0 pre-treatment and 1 post.  
+
+
+
+The main takeaway from this is that using instant replay may lead to the discovery of more penalties that would’ve originally gone unseen. This doesn’t guarantee that instant replay will lead to this result, only suggesting. It is quite plausible that the results from this regression point to the difference in the amount of penalties between these two country’s leagues as being a result of instant replay being used in England. But this is one model, there is no clustering for standard-errors, no synthetic controls, no other counter factual is used to help check the robustness. The main sources of bias would be the lack of more observations. The policy was implemented in 2018 and there are not many years of data after this in order to really compare. This may not capture the full trend, and may push the results to be an overestimate since there may be more of a upward effect from one outlier and so few other data points. 
+
+
+#### Reg_2
+
+$$PenaltiesReceived_{ict}= β_0  + β_1 (Post_t * Top6_{ic}) + β_2  Post_t  + β_3 Top6_{ic} + ∈_{ict}$$
+ This model has the same structure of the first model. The difference is that it is comparing the differences within the treatment group. We want to know if bigger teams benefit from this policy change differently than smaller teams. In order to do this the teams in the England football league are divided among teams in the top 6 and not in the top 6. These teams are well established as the 'top 6' by professionals and the general public due to their performance and financial power. This is of course an arbitrary cut off, however the difference between the 6th and 7th best team is very large, indicating that this is a good cut off.
+ 
+This is a form of placebo test as both groups received the treatment, therefore we would expect the interaction term to be zero. If a statistically significant interaction term is found, the policy has differential impacts for big vs small teams. To conduct the test the treatment ($Top6_{ic}$) was classed as being in the top 6. 
+
+ 
+This is not a real difference-in-difference model so coefficients can not be taken literally, however it is a means to show the differential impacts of the policy. The best way to run this model would be to have a synthetic control where the entire league has a simulated trend from 2018-present in order to capture what the games would look like without the instant replay. From here there would be a diff-diff run to distinguish the difference between the synthetic control league and the treatment league, to capture the aggregate effect. After this a binary variable can be created for teams that are in the top 6 and not in the top 6 in each data set. And the means of each variable of penalties received between each category within the dataset can be calculated. From here the means of difference in penalties received from top 6 vs not top 6 from each dataset can be compared to see how the policy effected each category. Sort of a descriptive analysis within a diff and diff model. The most obvious source of bias in this model is the lack of a control group. This doesn’t allow any sort of counter factual to be compared to so the results of this regression have no real basis in which to compare to. There is no way of saying whether this pushes the bias up or down. The best way to proceed from this point is to do the aforementioned experiment design, with some more adjustments to account for proper structure and robustness. 
+
+
+#### Reg_3
+
+
+$$PenaltiesReceived_{ict}= β_0  + β_1 (Post_t * TreatTop6_{ic}) + β_2  Post_t  + β_3  TreatTop6_{ic} + ∈_{ict}$$
+This third model is run to understand the effect of the policy on big teams. Therefore, this model is the same as regression 1, however only uses data from big teams in Scotland and England. A similar process was done to find top teams in Scotland. The teams are well established as the best teams in the country. Through this regression we can isolate whether big teams in England received more penalties as a result of the policy. 
+
+
+##### Ideal Experiment
+
+The ideal experiment for all models would be to have all clubs and all teams have the same budget and then have the same players be randomly assigned to teams that would have instant replay, and teams that would not. The teams would be randomly assigned to have instant replay or not as well. Then have them play the same number of games over a longer period. Then repeating the process once every several years, and then comparing the aggregate differences over time. In order to progress from this stage there would hopefully be more years to draw from the sample, and in addition other countries with similar characteristics in their football leagues. From here more in depth and robust models could be run in order to capture a bigger picture of how this effects football. 
+
+
+### Results
+
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align = 'center'}
 modelsummary(list(
@@ -336,4 +312,23 @@ modelsummary(list(
 fmt = 2
 )
 ```
+
+The above table shows the results for all three regressions. In regression 1 we find evidence of a relationship between the policy and penalties received, however this was not statistically significant with a p-value of 0.13. The model estimates that the policy has a 0.98 positive effect on yearly penalties received per team.
+
+
+In the second model we find signs that the policy effects big clubs in the league differently to small teams. The model estimates that the policy has a 1.06 positive effect on yearly penalties received per clubs in the top 6 compared to the rest of the clubs. This coefficient is statistically significant at the 5% level with a p-value of 0.04. This indicates that the policy effects the two types of clubs very differently, however this coefficient should be understood as a means to prove the differential impact rather than taking the number itself as fact.
+
+Now that we know that the policy effects big teams differently than small teams, the results in the third regression prove that this increase in penalties received by big teams in England was not a change seen for big teams in Scotland. Therefore, the policy was the factor that made penalties rise. The coefficient for the interaction term in this model is 1.14 which is statistically significant at the 5% level with a p-value of 0.03. Isolating big teams shows the magnitude of the increase in penalties received due to the policy. The minimal changes seen for England's small clubs caused the coefficient in the first regression to be insignificant. 
+
+### Conclusion
+
+
+What are results show is that VAR has increased the number penalties received by clubs somewhat, however this finding is not statistically significant. We do find statistically significant evidence of differential impacts of the policy between teams. Better, more financially supported teams benefit largely from the policy whereas smaller teams do not. This suggests that the policy has increased the disparity in results for big vs small teams. This may be a bad outcome for the sport as it causes the game to less competitive with big teams winning more often. One explanation for the differential impacts is that better teams are more likely to be attacking and be in the other teams 18 yard box where penalties can be given. Therefore, they are the teams that will see the benefits from video replay. 
+
+As previous visualizations have shown, VAR leads to more penalties in general. It is important to understand whether these extra penalties that are given because of VAR are the correct decision. If this is true, then the extra penalties given to bigger teams are warranted and these teams doing better is a closer representation to their true performance level. However, if these extra penalties are soft and only given because the slow-motion replies make the fouls look worse than they really are, then this policy is no fair and bad for the game in general. In other words is the video replay picking up real fouls that would have otherwise been missed without the technology, or is the technology causing excess penalties.
+
+This deeper understanding of whether the policy is a good thing for the sport is beyond the scope of this project. However, what we have show is that the policy has large impacts on penalties received for bigger teams an that this may have negative impacts on the competitiveness of the sport. We hope this inspires further research into the wide spread impacts this policy has on the sport.
+
+
+
 
