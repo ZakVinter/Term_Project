@@ -47,7 +47,25 @@ options(knitr.table.format = "html")
 
 ---
 
-# Table of contents
+# Background
+
+**What is VAR?**
+
+* VAR stands for Video Assistant Referee.
+
+* Facilitates pitch side review for on-field referees during the game.
+
+* Designed to improve the accuracy of refereeing decisions throughout the sport.
+
+
+
+
+
+
+
+---
+
+# Exploratory Analysis
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 
@@ -58,16 +76,16 @@ pacman::p_load(estimatr, modelsummary, tidyverse, ggplot2)
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 
-load("~/GitHub/Term_Project/R_Data/Joined/tidy_joined.Rdata")
-load("~/GitHub/Term_Project/R_Data/England/tidy_eng.Rdata")
-load("~/GitHub/Term_Project/R_Data/Scotland/tidy_scot.Rdata")
-load("~/GitHub/Term_Project/R_Data/England/eng_pre.Rdata")
-load("~/GitHub/Term_Project/R_Data/England/eng_post.Rdata")
-load("~/GitHub/Term_Project/R_Data/Joined/Appended_Joined.Rdata")
-load("~/GitHub/Term_Project/R_Data/England/Appended_Top_6.Rdata")
-load("~/GitHub/Term_Project/R_Data/Econometrics/Reg_Data.Rdata")
-load("~/GitHub/Term_Project/R_Data/Econometrics/Reg_Data_2.Rdata")
-load("~/GitHub/Term_Project/R_Data/Econometrics/Reg_Data_3.Rdata")
+load("~/documents/GitHub/Term_Project/R_Data/Joined/tidy_joined.Rdata")
+load("~/documents/GitHub/Term_Project/R_Data/England/tidy_eng.Rdata")
+load("~/documents/GitHub/Term_Project/R_Data/Scotland/tidy_scot.Rdata")
+load("~/documents/GitHub/Term_Project/R_Data/England/eng_pre.Rdata")
+load("~/documents/GitHub/Term_Project/R_Data/England/eng_post.Rdata")
+load("~/documents/GitHub/Term_Project/R_Data/Joined/Appended_Joined.Rdata")
+load("~/documents/GitHub/Term_Project/R_Data/England/Appended_Top_6.Rdata")
+load("~/documents/GitHub/Term_Project/R_Data/Econometrics/Reg_Data.Rdata")
+load("~/documents/GitHub/Term_Project/R_Data/Econometrics/Reg_Data_2.Rdata")
+load("~/documents/GitHub/Term_Project/R_Data/Econometrics/Reg_Data_3.Rdata")
 
 ```
 
@@ -114,3 +132,22 @@ class: inverse, middle
 name: bigdata
 
 # Tools for big data
+
+
+---
+
+# Cloud computing
+
+**Set up a virtual machine (VM) on a cloud computing platform.**
+* Easy and cheap. (Much more so than setting up your own server!)
+* Get billed for exactly as much power, memory, and time as you need.
+* For most purposes, you won't use more than a few dollars per month.
+
+**Platforms:**
+* [Google Cloud Compute Engine](https://cloud.google.com/compute/)
+* [Amazon Web Services](https://aws.amazon.com/)
+* [Posit Cloud](https://posit.cloud/) (affiliated with RStudio).
+
+**Tutorials** by Grant McDermott: [Part 1](https://raw.githack.com/uo-ec510-2020-spring/lectures/master/13-gce-i/13-gce-i.html), [Part 2](https://raw.githack.com/uo-ec510-2020-spring/lectures/master/14-gce-ii/14-gce-ii.html).
+
+
