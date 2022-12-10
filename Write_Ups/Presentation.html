@@ -4,10 +4,12 @@
     <title>The Effect of VAR on Football Penalties Received</title>
     <meta charset="utf-8" />
     <meta name="author" content="Zak Vinter &amp; Nick Power" />
-    <script src="Presentation_files/header-attrs-2.15/header-attrs.js"></script>
+    <script src="Presentation_files/header-attrs-2.18/header-attrs.js"></script>
     <link href="Presentation_files/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="Presentation_files/remark-css-0.0.1/metropolis.css" rel="stylesheet" />
     <link href="Presentation_files/remark-css-0.0.1/metropolis-fonts.css" rel="stylesheet" />
+    <script src="Presentation_files/kePrint-0.0.1/kePrint.js"></script>
+    <link href="Presentation_files/lightable-0.0.1/lightable.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/my-css.css" type="text/css" />
   </head>
   <body>
@@ -34,13 +36,17 @@ exclude: true
 
 # Background
 
-**What is VAR.**
+**What is VAR?**
 
 * VAR stands for Video Assistant Referee.
 
 * Facilitates pitch side review for on-field referees during the game.
 
 * Designed to improve the accuracy of refereeing decisions throughout the sport.
+
+
+
+
 
 
 
@@ -59,27 +65,145 @@ exclude: true
 
 
 ---
-class: inverse, middle
-name: bigdata
 
-# Tools for big data
+# Exploratory Analysis
+
+&lt;img src="Presentation_files/figure-html/unnamed-chunk-4-1.svg" style="display: block; margin: auto;" /&gt;
 
 
 ---
 
-# Cloud computing
+# Exploratory Analysis
+&lt;img src="Presentation_files/figure-html/unnamed-chunk-5-1.svg" style="display: block; margin: auto;" /&gt;
 
-**Set up a virtual machine (VM) on a cloud computing platform.**
-* Easy and cheap. (Much more so than setting up your own server!)
-* Get billed for exactly as much power, memory, and time as you need.
-* For most purposes, you won't use more than a few dollars per month.
+---
 
-**Platforms:**
-* [Google Cloud Compute Engine](https://cloud.google.com/compute/)
-* [Amazon Web Services](https://aws.amazon.com/)
-* [Posit Cloud](https://posit.cloud/) (affiliated with RStudio).
+# Regressions
 
-**Tutorials** by Grant McDermott: [Part 1](https://raw.githack.com/uo-ec510-2020-spring/lectures/master/13-gce-i/13-gce-i.html), [Part 2](https://raw.githack.com/uo-ec510-2020-spring/lectures/master/14-gce-ii/14-gce-ii.html).
+`$$PenaltiesReceived_{ict}= β_0  + β_1 (Post_t * Treat_{ic}) + β_2  Post_t  + β_3  Treat_{ic} + ∈_{ict}$$`
+
+
+
+`$$PenaltiesReceived_{ict}= β_0  + β_1 (Post_t * Top6_{ic}) + β_2  Post_t  + β_3 Top6_{ic} + ∈_{ict}$$`
+
+
+
+
+
+`$$PenaltiesReceived_{ict}= β_0  + β_1 (Post_t * TreatTop6_{ic}) + β_2  Post_t  + β_3  TreatTop6_{ic} + ∈_{ict}$$`
+
+
+
+
+
+---
+
+# Econometric Analysis
+
+
+
+
+&lt;table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Reg_1 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Reg_2 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Reg_3 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; (Intercept) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 5.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 5.08 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 6.61 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.30) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.47) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.62) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Time &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −0.28 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −0.33 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −0.68 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.49) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.71) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.84) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Area &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −0.39 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.56 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −0.97 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.38) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.62) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.74) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Interaction &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2.25 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2.60 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;box-shadow: 0px 1px"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;box-shadow: 0px 1px"&gt; (0.66) &lt;/td&gt;
+   &lt;td style="text-align:center;box-shadow: 0px 1px"&gt; (1.06) &lt;/td&gt;
+   &lt;td style="text-align:center;box-shadow: 0px 1px"&gt; (1.15) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Num.Obs. &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 287 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 90 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 91 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; R2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.012 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.138 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.074 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; R2 Adj. &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.001 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.108 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.042 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; AIC &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1368.9 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 421.3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 440.1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; BIC &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1387.2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 433.8 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 452.6 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; RMSE &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2.58 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2.38 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2.57 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+
+---
+
 
 
     </textarea>

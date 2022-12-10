@@ -76,16 +76,16 @@ pacman::p_load(estimatr, modelsummary, tidyverse, ggplot2)
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 
-load("~/documents/GitHub/Term_Project/R_Data/Joined/tidy_joined.Rdata")
-load("~/documents/GitHub/Term_Project/R_Data/England/tidy_eng.Rdata")
-load("~/documents/GitHub/Term_Project/R_Data/Scotland/tidy_scot.Rdata")
-load("~/documents/GitHub/Term_Project/R_Data/England/eng_pre.Rdata")
-load("~/documents/GitHub/Term_Project/R_Data/England/eng_post.Rdata")
-load("~/documents/GitHub/Term_Project/R_Data/Joined/Appended_Joined.Rdata")
-load("~/documents/GitHub/Term_Project/R_Data/England/Appended_Top_6.Rdata")
-load("~/documents/GitHub/Term_Project/R_Data/Econometrics/Reg_Data.Rdata")
-load("~/documents/GitHub/Term_Project/R_Data/Econometrics/Reg_Data_2.Rdata")
-load("~/documents/GitHub/Term_Project/R_Data/Econometrics/Reg_Data_3.Rdata")
+load("~/GitHub/Term_Project/R_Data/Joined/tidy_joined.Rdata")
+load("~/GitHub/Term_Project/R_Data/England/tidy_eng.Rdata")
+load("~/GitHub/Term_Project/R_Data/Scotland/tidy_scot.Rdata")
+load("~/GitHub/Term_Project/R_Data/England/eng_pre.Rdata")
+load("~/GitHub/Term_Project/R_Data/England/eng_post.Rdata")
+load("~/GitHub/Term_Project/R_Data/Joined/Appended_Joined.Rdata")
+load("~/GitHub/Term_Project/R_Data/England/Appended_Top_6.Rdata")
+load("~/GitHub/Term_Project/R_Data/Econometrics/Reg_Data.Rdata")
+load("~/GitHub/Term_Project/R_Data/Econometrics/Reg_Data_2.Rdata")
+load("~/GitHub/Term_Project/R_Data/Econometrics/Reg_Data_3.Rdata")
 
 ```
 
@@ -128,26 +128,131 @@ ggplot(data=tidy_eng,aes(x=years, y=pen_per_team)) + geom_point(color = "black",
 
 
 ---
-class: inverse, middle
-name: bigdata
 
-# Tools for big data
+# Exploratory Analysis
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align = 'center'}
+
+#plot of two local regressions. Penalties per team for both Scotland and England
+tidy_joined %>%
+  ggplot(aes(years, pen_per_team, color = country)) +
+  geom_smooth(size = 1.25) +
+  #set x axis limits and breaks for the year values in the data set
+  scale_x_continuous(limits = c(2013,2021), 
+                     breaks = c(2013,2014,2015,2016,2017,2018,2019,2020,2021))+
+  #set appropriate range for y values
+  ylim(3.5,6.5) +
+  #add title
+  ggtitle("Average Penalties per Team across Country") +
+  #label the axis'
+  xlab("Years") +
+  ylab("Average Penalties (per team)") +
+  #change the theme of the legend text
+  guides(color = guide_legend(label.theme = element_text(color = c("black"), face ="bold"))) +
+  #change the theme for the position of the title
+  theme(plot.title = element_text(hjust = 0.5, color="black", size=14, face="bold"),
+        #change theme of axis', tick markers
+        axis.title.x = element_text(color="black", size=12, face="bold"),
+        axis.title.y = element_text(color="black", size=12, face="bold"),
+        axis.text.x = element_text(color="black", face="bold"), 
+        axis.text.y = element_text(color="black", face="bold"),
+        #remove legend title
+        legend.title=element_blank()
+        ) +
+  #add line for the policies implementation date
+  geom_vline(xintercept=2018.5, 
+               color = "black", size=1)
+
+```
 
 
 ---
 
-# Cloud computing
+# Exploratory Analysis
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align = 'center'}
 
-**Set up a virtual machine (VM) on a cloud computing platform.**
-* Easy and cheap. (Much more so than setting up your own server!)
-* Get billed for exactly as much power, memory, and time as you need.
-* For most purposes, you won't use more than a few dollars per month.
 
-**Platforms:**
-* [Google Cloud Compute Engine](https://cloud.google.com/compute/)
-* [Amazon Web Services](https://aws.amazon.com/)
-* [Posit Cloud](https://posit.cloud/) (affiliated with RStudio).
 
-**Tutorials** by Grant McDermott: [Part 1](https://raw.githack.com/uo-ec510-2020-spring/lectures/master/13-gce-i/13-gce-i.html), [Part 2](https://raw.githack.com/uo-ec510-2020-spring/lectures/master/14-gce-ii/14-gce-ii.html).
+ggplot(data=Appended_Top_6, aes(x=Years, y=average_pens, color = Type)) + geom_line(size = 1) +
+  geom_point(color = "black", size = 1) +
+  #set x axis limits and breaks for the year values in the data set
+  scale_x_continuous(limits = c(2013,2021), 
+                     breaks = c(2013,2014,2015,2016,2017,2018,2019,2020,2021))+
+  #set appropriate range for y values
+  ylim(2,12) +
+  #add title
+  ggtitle("Average Penalties per Rank in England") +
+  #label the axis'
+  xlab("Years") +
+  ylab("Average Penalties (per Team)") +
+  #change the theme of the legend text
+  guides(color = guide_legend(label.theme = element_text(color = c("black"), face ="bold"))) +
+  #change the theme and the position of the title
+  theme(plot.title = element_text(hjust = 0.5, color="black", size=14, face="bold"),
+        #change theme of axis', tick markers
+        axis.title.x = element_text(color="black", size=12, face="bold"),
+        axis.title.y = element_text(color="black", size=12, face="bold"),
+        axis.text.x = element_text(color="black", face="bold"), 
+        axis.text.y = element_text(color="black", face="bold"),
+        #remove the legend title
+        legend.title=element_blank()
+  ) +
+  #create line to represent the policy implementation 
+  geom_vline(xintercept=2018.5, 
+             color = "black", size=1)
+
+
+
+
+
+```
+
+---
+
+# Regressions
+
+$$PenaltiesReceived_{ict}= β_0  + β_1 (Post_t * Treat_{ic}) + β_2  Post_t  + β_3  Treat_{ic} + ∈_{ict}$$
+
+
+
+$$PenaltiesReceived_{ict}= β_0  + β_1 (Post_t * Top6_{ic}) + β_2  Post_t  + β_3 Top6_{ic} + ∈_{ict}$$
+
+
+
+
+
+$$PenaltiesReceived_{ict}= β_0  + β_1 (Post_t * TreatTop6_{ic}) + β_2  Post_t  + β_3  TreatTop6_{ic} + ∈_{ict}$$
+
+
+
+
+
+---
+
+# Econometric Analysis
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+reg_1_robust = lm_robust(PENALTIES_RECEIVED ~ Time + Area + Interaction, data = Reg_Data)
+
+reg_2_robust = lm_robust(PENALTIES_RECEIVED ~ Time + Area + Interaction, data = Reg_Data_2)
+
+reg_3_robust = lm_robust(PENALTIES_RECEIVED ~ Time + Area + Interaction, data = Reg_Data_3)
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align = 'center'}
+modelsummary(list(
+  "Reg_1" = reg_1_robust, 
+  "Reg_2" = reg_2_robust, 
+  "Reg_3" = reg_3_robust
+), 
+fmt = 2
+)
+```
+
+
+
+---
+
 
 
