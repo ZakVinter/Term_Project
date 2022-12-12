@@ -36,6 +36,13 @@ exclude: true
 
 # Background
 
+**What is a Penalty?**
+
+* Penalties are awarded to a team if a foul was committed against them within the opponents 18 yard box.
+
+* Examples: handball, missed timed tackle, and clear obstruction of movement.
+
+
 **What is VAR?**
 
 * VAR stands for Video Assistant Referee.
@@ -44,7 +51,31 @@ exclude: true
 
 * Designed to improve the accuracy of refereeing decisions throughout the sport.
 
+---
 
+# Natural Experiment
+
+
+**Experiment Design**
+
+* English Premier League, first country to implement policy (2019).
+
+* Difference-in-difference style experiment.
+
+* Scottish Premier League used as a comparison group.
+
+
+
+
+---
+
+# Data
+
+* All penalties received in both leagues between 2013-2021, per club.
+
+* 20 clubs per year in the English league and 12 for Scotland.
+
+* Specific clubs are different year-on-year, with relegation and promotion.
 
 
 
@@ -62,37 +93,66 @@ exclude: true
 
 &lt;img src="Presentation_files/figure-html/unnamed-chunk-3-1.svg" style="display: block; margin: auto;" /&gt;
 
-
-
 ---
-
-# Exploratory Analysis
-
+# Exporatory Analysis
 &lt;img src="Presentation_files/figure-html/unnamed-chunk-4-1.svg" style="display: block; margin: auto;" /&gt;
 
 
 ---
 
 # Exploratory Analysis
+
 &lt;img src="Presentation_files/figure-html/unnamed-chunk-5-1.svg" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+# Exploratory Analysis
+&lt;img src="Presentation_files/figure-html/unnamed-chunk-6-1.svg" style="display: block; margin: auto;" /&gt;
 
 ---
 
 # Regressions
 
+**Main Model**
+
 `$$PenaltiesReceived_{ict}= β_0  + β_1 (Post_t * Treat_{ic}) + β_2  Post_t  + β_3  Treat_{ic} + ∈_{ict}$$`
 
+* `\(PenaltiesReceived_{ct}\)` represents penalties received by individual club i in Country c in year t. 
 
 
-`$$PenaltiesReceived_{ict}= β_0  + β_1 (Post_t * Top6_{ic}) + β_2  Post_t  + β_3 Top6_{ic} + ∈_{ict}$$`
+* `\(β_1\)` is the coefficient of interest, this measures the with-in country difference in penalties received before and after VAR is implemented, conditional on year fixed effects.
+
+* `\(β_2\)` represents country fixed effects, controlling for factors that are constant within country over-time. 
+
+* `\(β_3\)` represents time fixed effects, controlling for patterns over time that exist within the United Kingdom. 
+
+
+
+
+---
+# Addtional Regressions
 
 
 
 
 
-`$$PenaltiesReceived_{ict}= β_0  + β_1 (Post_t * TreatTop6_{ic}) + β_2  Post_t  + β_3  TreatTop6_{ic} + ∈_{ict}$$`
+`$$Penalties_{ict}= β_0  + β_1 (Post_t * Top6_{ic}) + β_2  Post_t  + β_3 Top6_{ic} + ∈_{ict}$$`
 
 
+* Top six English Teams vs non-top six teams in England
+
+
+
+
+
+
+
+
+
+`$$Penalties_{ict}= β_0  + β_1 (Post_t * TreatTop6_{ic}) + β_2  Post_t  + β_3  TreatTop6_{ic} + ∈_{ict}$$`
+
+* Top teams in England vs top teams in Scotland
 
 
 
@@ -200,9 +260,51 @@ exclude: true
 &lt;/tbody&gt;
 &lt;/table&gt;
 
+---
+
+# Problems for Causality
+
+
+**Randomness of the policies implementation**
+
+
+**Generalization of results**
+
+* Style of play
+
+* Financial Disparity
+
+
+**Omitted Variables**
+
+* Weather
+
+* Pitch Quality
+
 
 
 ---
+
+# Conclusions
+
+**Findings**
+
+* VAR has increased the number penalties received by clubs, however not statistically significantly.
+
+
+* Policy has differential impacts across club size and ability.
+
+**Further Research**
+
+* Distinguish if is the video replay picking up real fouls that would have otherwise been missed without the technology, or is the technology causing excess penalties.
+
+
+
+
+
+
+
+
 
 
 
